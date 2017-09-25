@@ -1,0 +1,25 @@
+*close-buffers.txt*  Dialog to close buffers
+
+Commands:
+:CloseBuffers
+    Opens a dialog to close buffers. You will see:
+
+        Close Buffers?
+        [C]ancel, (T)his, (A)ll, (O)ther, (S)elect, (N)ameless:
+
+    Press the key corresponding to your desired action. See the table below
+    for details.
+
+    Key |   Result
+    ___________________________________________________________________________
+    c   |   Cancel
+    t   |   Close *this* buffer (the current buffer)
+    a   |   Close *all* buffers
+    o   |   Close *other* buffers (all except the current buffer)
+    s   |   Allow you to *select* which buffer by typing buffer numbers
+    n   |   Close all buffers without names (buffers that show up as [No Name])
+
+                        *close-buffers-settings*
+This plugin doesn't currently have any settings.
+
+ vim:tw=78:et:ft=help:norl:
