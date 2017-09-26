@@ -1,11 +1,6 @@
 ## Dialog to Close Vim Buffers
 
-Provides a command called `:CloseBuffers` which opens a dialog to close buffers. You will see the following:
-
-![Screenshot](/doc/screenshot.png?raw=true)
-    
-At this point, you can press the key corresponding to your desired action. See the table below
-for details.
+Provides a command called `:CloseBuffers` which opens a dialog to close buffers. You can press the key corresponding to your desired action. See the table below for all options.
 
 <table>
     <thead>
@@ -39,3 +34,8 @@ for details.
     </tr>
     </tbody>
 </table>
+
+Here is an example after pressing `o`
+
+![Screenshot](/doc/screencapture.gif?raw=true)
+
