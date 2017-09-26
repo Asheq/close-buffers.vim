@@ -1,4 +1,4 @@
-# Dialog to Close Vim Buffers
+# Dialog to Close Vim Buffers 📖
 
 ## Description
 Provides a command called `:CloseBuffers` which opens a dialog to close buffers. You will see the following:
@@ -52,6 +52,7 @@ An *alternative* is to use `<C-q>`. By default, `<C-q>` is made redundant by `<C
     nnoremap <silent> <C-q> :CloseBuffers<CR>
     
 ## Install
+You can use any plugin manager you want. Here are some popular options:
 
 - [vim-plug](https://github.com/junegunn/vim-plug)
   - `Plug 'Asheq/close-buffers.vim'`
@@ -63,3 +64,9 @@ An *alternative* is to use `<C-q>`. By default, `<C-q>` is made redundant by `<C
 ## Credits
 
 I was inspired by [vim-bufonly](https://github.com/schickling/vim-bufonly), but wanted to add a few more options.
+
+## TODO
+
+- Add version number
+- Add license file
+
