@@ -25,7 +25,7 @@ Provides a command called `:CloseBuffers` which opens a dialog, showing you vari
     </tr>
     <tr>
         <td>h</td>
-        <td>Close *hidden* buffers (buffers not displayed in a window)</td>
+        <td>Close <i>hidden</i> buffers (buffers not displayed in a window)</td>
     </tr>
     <tr>
         <td>s</td>
