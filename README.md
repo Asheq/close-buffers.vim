@@ -66,3 +66,4 @@ I was inspired by [vim-bufonly](https://github.com/schickling/vim-bufonly), but 
 
 - Add version number
 - Add license file
+- Add option to close Hidden buffers (buffers not visible in any window)
