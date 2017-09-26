@@ -5,19 +5,20 @@ Commands:
     Opens a dialog to close buffers. You will see:
 
         Close Buffers?
-        [C]ancel, (T)his, (A)ll, (O)ther, (S)elect, (N)ameless:
+        [C]ancel, (T)his, (A)ll, (O)ther, (H)idden, (S)elect, (N)ameless: 
 
     Press the key corresponding to your desired action. See the table below
     for details.
 
-    Key |   Result
+    Key |   Action
     ___________________________________________________________________________
     c   |   Cancel
-    t   |   Close *this* buffer (the current buffer)
+    t   |   Close *this* buffer (buffer in current window)
     a   |   Close *all* buffers
-    o   |   Close *other* buffers (all except the current buffer)
-    s   |   Allow you to *select* which buffer by typing buffer numbers
-    n   |   Close all buffers without names (buffers that show up as [No Name])
+    o   |   Close *other* buffers (all except buffer in current window)
+    h   |   Close *hidden* buffers (buffers not displayed in a window)
+    s   |   Allows you to *select* which buffer to close
+    n   |   Close *nameless* buffers (buffers that show up as [No Name])
 
                         *close-buffers-settings*
 This plugin doesn't currently have any settings.

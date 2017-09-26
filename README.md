@@ -1,6 +1,6 @@
 # Dialog to Close Vim Buffers 📖
 
-Provides a command called `:CloseBuffers`. This will open a dialog, showing you various options. Press the key corresponding to your desired action.
+Provides a command called `:CloseBuffers` which opens a dialog, showing you various options. Press the key corresponding to your desired action.
 <table>
     <thead>
         <th>Key</th>
@@ -13,7 +13,7 @@ Provides a command called `:CloseBuffers`. This will open a dialog, showing you 
     </tr>
     <tr>
         <td>t</td>
-        <td>Close <i>this</i> buffer (the current buffer)</td>
+        <td>Close <i>this</i> buffer (buffer in current window)</td>
     </tr>
     <tr>
         <td>a</td>
@@ -21,7 +21,11 @@ Provides a command called `:CloseBuffers`. This will open a dialog, showing you 
     </tr>
     <tr>
         <td>o</td>
-        <td>Close <i>other</i> buffers (all buffers except the current buffer)</td>
+        <td>Close <i>other</i> buffers (all except buffer in current window)</td>
+    </tr>
+    <tr>
+        <td>h</td>
+        <td>Close *hidden* buffers (buffers not displayed in a window)</td>
     </tr>
     <tr>
         <td>s</td>
@@ -40,14 +44,11 @@ Here is an example with `o`:
 
 ## Recommended Mapping
 
-Many people map `Q` to `<NOP>`. Why not make use of `Q` by mapping it to `:CloseBuffers` as follows?
-
     nnoremap <silent> Q :CloseBuffers<CR>
-    
-An *alternative* is to use `<C-q>`. By default, `<C-q>` is made redundant by `<C-v>` (they both start visual block mode by default).
+
+#### Alternative:
 
     nnoremap <silent> <C-q> :CloseBuffers<CR>
-    
 ## Install
 You can use any plugin manager you want. Here are some popular options:
 
@@ -60,10 +61,10 @@ You can use any plugin manager you want. Here are some popular options:
 
 ## Credits
 
-I was inspired by [vim-bufonly](https://github.com/schickling/vim-bufonly), but wanted to add a few more options.
+This plugin was inspired by [vim-bufonly](https://github.com/schickling/vim-bufonly), but adds
+several related actions.
 
-## TODO
+## Todo
 
 - Add version number
 - Add license file
-- Add option to close Hidden buffers (buffers not visible in any window)
