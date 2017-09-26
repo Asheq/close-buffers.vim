@@ -1,5 +1,6 @@
-## Dialog to Close Vim Buffers
+# Dialog to Close Vim Buffers
 
+## Description
 Provides a command called `:CloseBuffers` which opens a dialog to close buffers. You will see the following:
 
 ![Screenshot](/doc/screenshot.png?raw=true)
@@ -40,7 +41,7 @@ for details.
     </tbody>
 </table>
 
-### Recommended Mapping
+## Recommended Mapping
 
 Many people map `Q` to `<NOP>`. Why not make use of `Q` by mapping it to `:CloseBuffers` as follows?
 
@@ -49,3 +50,16 @@ Many people map `Q` to `<NOP>`. Why not make use of `Q` by mapping it to `:Close
 An *alternative* is to use `<C-q>`. By default, `<C-q>` is made redundant by `<C-v>` (they both start visual block mode by default).
 
     nnoremap <silent> <C-q> :CloseBuffers<CR>
+    
+## Install
+
+- [vim-plug](https://github.com/junegunn/vim-plug)
+  - `Plug 'Asheq/close-buffers.vim'`
+- [Pathogen](https://github.com/tpope/vim-pathogen)
+  - `cd ~/.vim/bundle && git clone git://github.com/asheq/close-buffers.git`
+- Manual installation:
+  - Copy the files to your `.vim` directory.
+
+## Credits
+
+I was inspired by [vim-bufonly](https://github.com/schickling/vim-bufonly), but wanted to add a few more options.
