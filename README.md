@@ -4,7 +4,7 @@ Provides a command called `:CloseBuffers` which opens a dialog to close buffers.
 
 ![Screenshot](/doc/screenshot.png?raw=true)
     
-Press the key corresponding to your desired action. See the table below
+At this point, you can press the key corresponding to your desired action. See the table below
 for details.
 
 <table>
@@ -19,23 +19,23 @@ for details.
     </tr>
     <tr>
         <td>t</td>
-        <td>Close *this* buffer (the current buffer)</td>
+        <td>Close <i>this</i> buffer (the current buffer)</td>
     </tr>
     <tr>
         <td>a</td>
-        <td>Close *all* buffers</td>
+        <td>Close <i>all</i> buffers</td>
     </tr>
     <tr>
         <td>o</td>
-        <td>Close *other* buffers (all buffers except the current buffer)</td>
+        <td>Close <i>other</i> buffers (all buffers except the current buffer)</td>
     </tr>
     <tr>
         <td>s</td>
-        <td>Allows you to *select* which buffer to close</td>
+        <td>Allows you to <i>select</i> which buffer to close</td>
     </tr>
     <tr>
         <td>n</td>
-        <td>Close *nameless* buffers (buffers that show up as [No Name])</td>
+        <td>Close <i>nameless</i> buffers (buffers that show up as <i>[No Name]</i>)</td>
     </tr>
     </tbody>
 </table>
