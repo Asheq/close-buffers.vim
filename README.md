@@ -39,3 +39,13 @@ for details.
     </tr>
     </tbody>
 </table>
+
+### Recommended Mapping
+
+Many people map `Q` to `<NOP>`. Why not make use of `Q` by mapping it to `:CloseBuffers` as follows?
+
+    nnoremap <silent> Q :CloseBuffers<CR>
+    
+An *alternative* is to use `<C-q>`. By default, `<C-q>` is made redundant by `<C-v>` (they both start visual block mode by default).
+
+    nnoremap <silent> <C-q> :CloseBuffers<CR>
