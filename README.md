@@ -2,7 +2,7 @@
 
 Provides a command called `:CloseBuffers` which opens a dialog to close buffers. You will see the following:
 
-    ![Screenshot](/doc/screenshot.jpg?raw=true)
+    ![Screenshot](/doc/screenshot.png?raw=true)
     
 Press the key corresponding to your desired action. See the table below
 for details.
