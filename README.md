@@ -2,8 +2,7 @@
 
 Provides a command called `:CloseBuffers` which opens a dialog to close buffers. You will see the following:
 
-    Close Buffers?
-    [C]ancel, (T)his, (A)ll, (O)ther, (S)elect, (N)ameless:
+    ![screenshot](https://github.com/asheq/close-buffers.vim/blob/maseter/doc/screenshot.png)
 
 Press the key corresponding to your desired action. See the table below
 for details.
