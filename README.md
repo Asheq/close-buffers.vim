@@ -2,8 +2,8 @@
 
 Provides a command called `:CloseBuffers` which opens a dialog to close buffers. You will see the following:
 
-    [[https://github.com/Asheq/close-buffers.vim/blob/master/doc/screenshot.png]]
-
+    ![Screenshot](/doc/screenshot.jpg?raw=true)
+    
 Press the key corresponding to your desired action. See the table below
 for details.
 
