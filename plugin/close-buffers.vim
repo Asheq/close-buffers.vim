@@ -1,7 +1,12 @@
 " close-buffers.vim
-" :CloseBuffers displays an interactive dialog to close buffers
+" Commands to close buffers
 " Author:	Asheq Imran <https://github.com/Asheq>
 " License:	Same license as Vim itself
+" Version: 0.2
+
+" Todo List
+" - Are redraws necessary?
+" - Add settings to make commands optional
 
 if exists("g:loaded_close_buffers")
     finish
@@ -15,23 +20,45 @@ if !exists(':CloseBuffers')
     command CloseBuffers call s:CloseBuffers()
 endif
 
+if !exists(':CloseAllBuffers')
+    command CloseAllBuffers call s:CloseAllBuffers()
+endif
+
+if !exists(':CloseThisBuffer')
+    command CloseThisBuffer call s:CloseThisBuffer()
+endif
+
+if !exists(':CloseOtherBuffers')
+    command CloseOtherBuffers call s:CloseOtherBuffers()
+endif
+
+if !exists(':CloseHiddenBuffers')
+    command CloseHiddenBuffers call s:CloseHiddenBuffers()
+endif
+
+if !exists(':CloseNamelessBuffers')
+    command CloseNamelessBuffers call s:CloseNamelessBuffers()
+endif
+
+if !exists(':CloseSelectedBuffers')
+    command CloseSelectedBuffers call s:CloseSelectedBuffers()
+endif
+
 function! s:CloseBuffers()
     call s:PrettyPrintBufferList()
-    call s:EchoWithHighlightColor("Close Buffers?", 'Question')
-    call s:EchoWithHighlightColor('[C]ancel, (T)his, (A)ll, (O)ther, (H)idden, (S)elect, (N)ameless: ', 'Question')
-    let answer = tolower(nr2char(getchar()))
-    if answer == 't'
-        call s:CloseThisBuffer()
-    elseif answer == 'a'
+    let choice = confirm("Close Buffers?", "&Cancel\n&All\n&This\n&Other\n&Hidden\n&Nameless\n&Select", 1)
+    if choice == 2
         call s:CloseAllBuffers()
-    elseif answer == 'o'
+    elseif choice == 3
+        call s:CloseThisBuffer()
+    elseif choice == 4
         call s:CloseOtherBuffers()
-    elseif answer == 'h'
+    elseif choice == 5
         call s:CloseHiddenBuffers()
-    elseif answer == 's'
-        call s:CloseSelectedBuffers()
-    elseif answer == 'n'
+    elseif choice == 6
         call s:CloseNamelessBuffers()
+    elseif choice == 7
+        call s:CloseSelectedBuffers()
     else
         redraw
     endif
@@ -97,7 +124,7 @@ function! s:PrettyPrintBufferList()
     call s:EchoWithHighlightColor('  ' . fnamemodify(getcwd(), ':~') . "\n\n", 'Normal')
     call s:EchoWithHighlightColor('--- Buffers ---', 'Title')
     ls
-    call s:EchoWithHighlightColor("\n", 'Normal')
+    echo ''
 endfunction
 
 function! s:PrintSuccessMessage(buffer_type, deleted_count)

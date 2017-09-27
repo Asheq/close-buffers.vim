@@ -1,24 +1,27 @@
-*close-buffers.txt*  Dialog to close buffers
+*close-buffers.txt*  Commands to close buffers
 
 Commands:
+
 :CloseBuffers
-    Opens a dialog to close buffers. You will see:
+    Open a menu allowing you to choose one of the other commands
 
-        Close Buffers?
-        [C]ancel, (T)his, (A)ll, (O)ther, (H)idden, (S)elect, (N)ameless: 
+:CloseAllBuffers
+    Close all buffers
 
-    Press the key corresponding to your desired action. See the table below
-    for details.
+:CloseThisBuffer
+    Close buffer in current window
 
-    Key |   Action
-    ___________________________________________________________________________
-    c   |   Cancel
-    t   |   Close *this* buffer (buffer in current window)
-    a   |   Close *all* buffers
-    o   |   Close *other* buffers (all except buffer in current window)
-    h   |   Close *hidden* buffers (buffers not displayed in a window)
-    s   |   Allows you to *select* which buffer to close
-    n   |   Close *nameless* buffers (buffers that show up as [No Name])
+:CloseOtherBuffer
+    Close all buffers *except* buffer in current window
+
+:CloseHiddenBuffers
+    Close buffers not displayed in a window
+
+:CloseNamelessBuffers
+    Close buffers without names (buffers that show up as [No Name])
+
+:CloseSelectedBuffers
+    Allows you to select which buffers to close
 
                         *close-buffers-settings*
 This plugin doesn't currently have any settings.
