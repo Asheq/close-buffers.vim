@@ -38,7 +38,7 @@ Provides a command called `:CloseBuffers` which opens a dialog, showing you vari
     </tbody>
 </table>
 
-Here is an example with `o`:
+Here is an example with `h`:
 
 ![Screenshot](/doc/screencapture.gif?raw=true)
 
