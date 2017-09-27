@@ -94,7 +94,7 @@ endfunction
 
 function! s:PrettyPrintBufferList()
     call s:EchoWithHighlightColor('--- Working Directory ---', 'Title')
-    call s:EchoWithHighlightColor(fnamemodify(getcwd(), ':~') . "\n\n", 'Normal')
+    call s:EchoWithHighlightColor('  ' . fnamemodify(getcwd(), ':~') . "\n\n", 'Normal')
     call s:EchoWithHighlightColor('--- Buffers ---', 'Title')
     ls
     call s:EchoWithHighlightColor("\n", 'Normal')
