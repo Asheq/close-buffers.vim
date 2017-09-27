@@ -22,11 +22,11 @@ This vim plugin provides useful commands to close buffers:
             <td>Close buffer in current window</td>
         </tr>
         <tr>
-            <td>:CloseOtherBuffers</td>
+            <td>:CloseOtherBuffers <i>(:fire: <i>popular)</i></td>
             <td>Close all buffers <i>except</i> buffer in current window</td>
         </tr>
         <tr>
-            <td>:CloseHiddenBuffers</td>
+            <td>:CloseHiddenBuffers <i>(:fire: popular)</i></td>
             <td>Close buffers not displayed in a window</td>
         </tr>
         <tr>
