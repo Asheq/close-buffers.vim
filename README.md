@@ -10,37 +10,37 @@ Provides various commands to close buffers.
     </thead>
     <tbody>
         <tr>
-            <td>:CloseBuffers</td>
+            <td><b>:CloseBuffers</b></td>
             <td>Open a menu allowing you to choose one of the other commands</td>
         </tr>
         <tr>
-            <td>:CloseAllBuffers</td>
+            <td><b>:CloseAllBuffers</b></td>
             <td>Close all buffers</td>
         </tr>
         <tr>
-            <td>:CloseThisBuffer</td>
+            <td><b>:CloseThisBuffer</b></td>
             <td>Close buffer in current window</td>
         </tr>
         <tr>
-            <td>:CloseOtherBuffer</td>
-            <td>Close all buffers *except* buffer in current window</td>
+            <td><b>:CloseOtherBuffer</b></td>
+            <td>Close all buffers <i>except</i> buffer in current window</td>
         </tr>
         <tr>
-            <td>:CloseHiddenBuffers</td>
+            <td><b>:CloseHiddenBuffers</b></td>
             <td>Close buffers not displayed in a window</td>
         </tr>
         <tr>
-            <td>:CloseNamelessBuffers</td>
-            <td>Close buffers without names (buffers that show up as [No Name])</td>
+            <td><b>:CloseNamelessBuffers</b></td>
+            <td>Close buffers without names (buffers that show up as <i>[No Name]</i>)</td>
         </tr>
         <tr>
-            <td>:CloseSelectedBuffers</td>
+            <td><b>:CloseSelectedBuffers</b></td>
             <td>Allows you to select which buffers to close</td>
         </tr>
     </tbody>
 </table>
 
-Here is an example using the command :CloseBuffers followed with a response of `h`:
+Here is an example using the command `:CloseBuffers` followed by a response of `h`:
 
 ![Screenshot](/doc/screencapture.gif?raw=true)
 
