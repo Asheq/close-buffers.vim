@@ -27,7 +27,7 @@ This vim plugin provides useful commands to close buffers:
         </tr>
         <tr>
             <td>:CloseHiddenBuffers <i>(:fire: popular)</i></td>
-            <td>Close buffers not displayed in a window</td>
+            <td>Close all buffers not displayed in any window</td>
         </tr>
         <tr>
             <td>:CloseNamelessBuffers</td>
