@@ -11,7 +11,7 @@ Commands:
 :CloseThisBuffer
     Close buffer in current window
 
-:CloseOtherBuffer
+:CloseOtherBuffers
     Close all buffers *except* buffer in current window
 
 :CloseHiddenBuffers

@@ -10,31 +10,31 @@ Provides various commands to close buffers.
     </thead>
     <tbody>
         <tr>
-            <td><b>:CloseBuffers</b></td>
+            <td>:CloseBuffers</td>
             <td>Open a menu allowing you to choose one of the other commands</td>
         </tr>
         <tr>
-            <td><b>:CloseAllBuffers</b></td>
+            <td>:CloseAllBuffers</td>
             <td>Close all buffers</td>
         </tr>
         <tr>
-            <td><b>:CloseThisBuffer</b></td>
+            <td>:CloseThisBuffer</td>
             <td>Close buffer in current window</td>
         </tr>
         <tr>
-            <td><b>:CloseOtherBuffer</b></td>
+            <td>:CloseOtherBuffers</td>
             <td>Close all buffers <i>except</i> buffer in current window</td>
         </tr>
         <tr>
-            <td><b>:CloseHiddenBuffers</b></td>
+            <td>:CloseHiddenBuffers</td>
             <td>Close buffers not displayed in a window</td>
         </tr>
         <tr>
-            <td><b>:CloseNamelessBuffers</b></td>
-            <td>Close buffers without names (buffers that show up as <i>[No Name]</i>)</td>
+            <td>:CloseNamelessBuffers</td>
+            <td>Close buffers without names (that show up as <i>[No Name]</i>)</td>
         </tr>
         <tr>
-            <td><b>:CloseSelectedBuffers</b></td>
+            <td>:CloseSelectedBuffers</td>
             <td>Allows you to select which buffers to close</td>
         </tr>
     </tbody>
