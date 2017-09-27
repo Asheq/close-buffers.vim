@@ -43,57 +43,36 @@ function! s:CloseThisBuffer()
 endfunction
 
 function! s:CloseAllBuffers()
-    let buffer_numbers = range(1, bufnr('$'))
-    let deleted_count = s:DeleteBuffers(buffer_numbers)
+    let all_buffers = range(1, bufnr('$'))
+    let deleted_count = s:DeleteBuffers(all_buffers)
     call s:PrintSuccessMessage('All', deleted_count)
 endfunction
 
 function! s:CloseOtherBuffers()
-    let current_buffer_number = bufnr('%')
-    let max_buffer_number = bufnr('$')
-    let buffer_numbers = []
-    let i = 1
-    while i <= max_buffer_number
-        if i != current_buffer_number
-            let buffer_numbers = add(buffer_numbers, i)
-        endif
-        let i += 1
-    endwhile
-    let deleted_count = s:DeleteBuffers(buffer_numbers)
+    let all_buffers = range(1, bufnr('$'))
+    let current_buffer = bufnr('%')
+    let other_buffers = filter(all_buffers, 'v:val != current_buffer')
+    let deleted_count = s:DeleteBuffers(other_buffers)
     call s:PrintSuccessMessage('Other', deleted_count)
 endfunction
 
 function! s:CloseHiddenBuffers()
-    let max_buffer_number = bufnr('$')
-    let buffer_numbers = []
-    let i = 1
-    while i <= max_buffer_number
-        if bufwinid(i) == -1
-            let buffer_numbers = add(buffer_numbers, i)
-        endif
-        let i += 1
-    endwhile
-    let deleted_count = s:DeleteBuffers(buffer_numbers)
+    let hidden_buffers = map(filter(getbufinfo(), 'empty(v:val.windows)'), 'v:val.bufnr')
+    let deleted_count = s:DeleteBuffers(hidden_buffers)
     call s:PrintSuccessMessage('Hidden', deleted_count)
 endfunction
 
 function! s:CloseSelectedBuffers()
-    let buffer_numbers = input('Type space-seperated buffer numbers and <Enter>: ')
-    let deleted_count = s:DeleteBuffers(map(split(buffer_numbers), 'str2nr(v:val)'))
+    let input_text = input('Type space-seperated buffer numbers and <Enter>: ')
+    let selected_buffers = map(split(input_text), 'str2nr(v:val)')
+    let deleted_count = s:DeleteBuffers(selected_buffers)
     call s:PrintSuccessMessage('Selected', deleted_count)
 endfunction
 
 function! s:CloseNamelessBuffers()
-    let max_buffer_number = bufnr('$')
-    let buffer_numbers = []
-    let i = 1
-    while i <= max_buffer_number
-        if bufname(i) == ''
-            let buffer_numbers = add(buffer_numbers, i)
-        endif
-        let i += 1
-    endwhile
-    let deleted_count = s:DeleteBuffers(buffer_numbers)
+    let all_buffers = range(1, bufnr('$'))
+    let nameless_buffers = filter(all_buffers, 'bufname(v:val) == ""')
+    let deleted_count = s:DeleteBuffers(nameless_buffers)
     call s:PrintSuccessMessage('Nameless', deleted_count)
 endfunction
 
@@ -114,8 +93,11 @@ function! s:DeleteBuffers(buffer_numbers)
 endfunction
 
 function! s:PrettyPrintBufferList()
-    call s:EchoWithHighlightColor('--- Buffer List ---', 'Title')
+    call s:EchoWithHighlightColor('--- Working Directory ---', 'Title')
+    call s:EchoWithHighlightColor(fnamemodify(getcwd(), ':~') . "\n\n", 'Normal')
+    call s:EchoWithHighlightColor('--- Buffers ---', 'Title')
     ls
+    call s:EchoWithHighlightColor("\n", 'Normal')
 endfunction
 
 function! s:PrintSuccessMessage(buffer_type, deleted_count)
