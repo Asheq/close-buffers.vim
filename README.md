@@ -1,6 +1,6 @@
 # close-buffers.vim 📖
 
-Provides various commands to close buffers.
+This vim plugin provides useful commands to close buffers:
 
 
 <table>
