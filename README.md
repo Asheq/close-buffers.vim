@@ -1,4 +1,4 @@
-# Close Vim Buffers 📖
+# close-buffers.vim 📖
 
 Provides a command called `:CloseBuffers` which opens a dialog, showing you various options. Press the key corresponding to your desired action.
 <table>
