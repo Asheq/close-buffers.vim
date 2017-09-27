@@ -1,4 +1,4 @@
-# Dialog to Close Vim Buffers 📖
+# Close Vim Buffers 📖
 
 Provides a command called `:CloseBuffers` which opens a dialog, showing you various options. Press the key corresponding to your desired action.
 <table>
@@ -12,12 +12,12 @@ Provides a command called `:CloseBuffers` which opens a dialog, showing you vari
         <td>Cancel</td>
     </tr>
     <tr>
-        <td>t</td>
-        <td>Close <i>this</i> buffer (buffer in current window)</td>
-    </tr>
-    <tr>
         <td>a</td>
         <td>Close <i>all</i> buffers</td>
+    </tr>
+    <tr>
+        <td>t</td>
+        <td>Close <i>this</i> buffer (buffer in current window)</td>
     </tr>
     <tr>
         <td>o</td>
@@ -29,7 +29,7 @@ Provides a command called `:CloseBuffers` which opens a dialog, showing you vari
     </tr>
     <tr>
         <td>s</td>
-        <td>Allows you to <i>select</i> which buffer to close</td>
+        <td>Allows you to <i>select</i> which buffers to close</td>
     </tr>
     <tr>
         <td>n</td>
