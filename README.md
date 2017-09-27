@@ -42,7 +42,7 @@ This vim plugin provides useful commands to close buffers:
 
 Here is an example using the command `:CloseBuffers` followed by a response of `h`:
 
-![Screenshot](/doc/screencapture.gif?raw=true)
+[![asciicast](https://asciinema.org/a/cCINLrj70kCl7RvEJh6jlxBvB.png)](https://asciinema.org/a/cCINLrj70kCl7RvEJh6jlxBvB)
 
 ## Recommended Mapping
 
