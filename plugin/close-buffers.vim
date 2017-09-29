@@ -6,7 +6,7 @@
 
 " Todo List
 " - Are redraws necessary?
-" - Add settings to make commands optional
+" - Add setting to make certain commands optional
 
 if exists("g:loaded_close_buffers")
     finish
@@ -45,7 +45,6 @@ if !exists(':CloseSelectedBuffers')
 endif
 
 function! s:CloseBuffers()
-    call s:PrettyPrintBufferList()
     let choice = confirm("Close Buffers?", "&Cancel\n&All\n&This\n&Other\n&Hidden\n&Nameless\n&Select", 1)
     if choice == 2
         call s:CloseAllBuffers()
@@ -90,6 +89,7 @@ function! s:CloseHiddenBuffers()
 endfunction
 
 function! s:CloseSelectedBuffers()
+    call s:PrettyPrintBufferList()
     let input_text = input('Type space-seperated buffer numbers and <Enter>: ')
     let selected_buffers = map(split(input_text), 'str2nr(v:val)')
     let deleted_count = s:DeleteBuffers(selected_buffers)
@@ -121,10 +121,10 @@ endfunction
 
 function! s:PrettyPrintBufferList()
     call s:EchoWithHighlightColor('--- Working Directory ---', 'Title')
-    call s:EchoWithHighlightColor('  ' . fnamemodify(getcwd(), ':~') . "\n\n", 'Normal')
+    call s:EchoWithHighlightColor('    ' . fnamemodify(getcwd(), ':~') . "\n\n", 'Normal')
     call s:EchoWithHighlightColor('--- Buffers ---', 'Title')
     ls
-    echo ''
+    echo "\n"
 endfunction
 
 function! s:PrintSuccessMessage(buffer_type, deleted_count)
