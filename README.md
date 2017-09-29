@@ -37,6 +37,8 @@
     </tbody>
 </table>
 
+[![asciicast](https://asciinema.org/a/Q4nw2vqtuXE5X23vUtPw1PsFO.png)](https://asciinema.org/a/Q4nw2vqtuXE5X23vUtPw1PsFO)
+
 ## Recommended Mapping
 
     nnoremap <silent> Q :CloseBuffers<CR>
