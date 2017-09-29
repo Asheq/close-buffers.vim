@@ -37,10 +37,6 @@
     </tbody>
 </table>
 
-Here is an example using the command `:CloseBuffers` followed by a response of `h`:
-
-[![asciicast](https://asciinema.org/a/cCINLrj70kCl7RvEJh6jlxBvB.png)](https://asciinema.org/a/cCINLrj70kCl7RvEJh6jlxBvB)
-
 ## Recommended Mapping
 
     nnoremap <silent> Q :CloseBuffers<CR>
