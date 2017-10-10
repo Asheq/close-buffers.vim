@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td><code>:CloseSelectedBuffers</code></td>
-            <td>Allow user to select which buffers to close</td>
+            <td>Allows you to select which buffers to close</td>
             <td></td>
         </tr>
         <tr>
