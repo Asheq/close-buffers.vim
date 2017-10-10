@@ -13,12 +13,12 @@
             <td></td>
         </tr>
         <tr>
-            <td><code>:CloseOtherBuffers</code> <i>(:fire: <i>popular)</i></td>
+            <td><code>:CloseOtherBuffers</code> <br><i>(:fire: <i>popular)</i></td>
             <td>Close all buffers <i>except</i> buffer in current window</td>
             <td></td>
         </tr>
         <tr>
-            <td><code>:CloseHiddenBuffers</code> <i>(:fire: popular)</i></td>
+            <td><code>:CloseHiddenBuffers</code> <br><i>(:fire: popular)</i></td>
             <td>Close all buffers not displayed in any window</td>
             <td></td>
         </tr>
