@@ -8,39 +8,39 @@
     </thead>
     <tbody>
         <tr>
-            <td>`:CloseBuffersMenu` or just `:CloseBuffers`</td>
+            <td><pre>:CloseBuffersMenu</pre> or just <pre>:CloseBuffers</pre></td>
             <td>Open a menu allowing you to choose one of the other commands</td>
             <td></td>
         </tr>
         <tr>
-            <td>`:CloseOtherBuffers` <i>(:fire: <i>popular)</i></td>
+            <td><pre>:CloseOtherBuffers</pre> <i>(:fire: <i>popular)</i></td>
             <td>Close all buffers <i>except</i> buffer in current window</td>
             <td></td>
         </tr>
         <tr>
-            <td>`:CloseHiddenBuffers` <i>(:fire: popular)</i></td>
+            <td><pre>:CloseHiddenBuffers</pre> <i>(:fire: popular)</i></td>
             <td>Close all buffers not displayed in any window</td>
             <td></td>
         </tr>
         <tr>
-            <td>`:CloseNamelessBuffers`</td>
+            <td><pre>:CloseNamelessBuffers</pre></td>
             <td>Close buffers without names (that show up as <i>[No Name]</i>)</td>
             <td></td>
         </tr>
         <tr>
-            <td>`:CloseSelectedBuffers`</td>
+            <td><pre>:CloseSelectedBuffers</pre></td>
             <td>Allow user to select which buffers to close</td>
             <td></td>
         </tr>
         <tr>
-            <td>`:CloseAllBuffers`</td>
+            <td><pre>:CloseAllBuffers</pre></td>
             <td>Close all buffers</td>
-            <td>`:bufdo bd`</td>
+            <td><pre>:bufdo bd</pre></td>
         </tr>
         <tr>
-            <td>`:CloseThisBuffer`</td>
+            <td><pre>:CloseThisBuffer</pre></td>
             <td>Close buffer in current window</td>
-            <td>`:bd`</td>
+            <td><pre>:bd</pre></td>
         </tr>
     </tbody>
 </table>
