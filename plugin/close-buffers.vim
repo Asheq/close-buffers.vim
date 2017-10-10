@@ -4,9 +4,8 @@
 " License:	Same license as Vim itself
 " Version: 0.2
 
-" Todo List
-" - Are redraws necessary?
-" - Add setting to make certain commands optional
+" TODO:
+" - Allow ! to be added to the end of any command to force close the buffers without confirms
 
 if exists("g:loaded_close_buffers")
     finish
@@ -16,8 +15,18 @@ let g:loaded_close_buffers = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
+" Ingest user settings if they were specified
+" TODO: Read user-supplied option or apply these defaults
+let g:close_buffers_menu_options = 'c o h n s a t'
+let s:menu_option_letters = split(g:close_buffers_menu_options)
+
+" Define commands
+if !exists(':CloseBuffersMenu')
+    command CloseBuffersMenu call s:CloseBuffersMenu()
+endif
+
 if !exists(':CloseBuffers')
-    command CloseBuffers call s:CloseBuffers()
+    command CloseBuffers call s:CloseBuffersMenu()
 endif
 
 if !exists(':CloseAllBuffers')
@@ -44,28 +53,38 @@ if !exists(':CloseSelectedBuffers')
     command CloseSelectedBuffers call s:CloseSelectedBuffers()
 endif
 
-function! s:CloseBuffers()
-    let choice = confirm("Close Buffers?", "&Cancel\n&All\n&This\n&Other\n&Hidden\n&Nameless\n&Select", 1)
-    if choice == 2
-        call s:CloseAllBuffers()
-    elseif choice == 3
-        call s:CloseThisBuffer()
-    elseif choice == 4
-        call s:CloseOtherBuffers()
-    elseif choice == 5
-        call s:CloseHiddenBuffers()
-    elseif choice == 6
-        call s:CloseNamelessBuffers()
-    elseif choice == 7
-        call s:CloseSelectedBuffers()
-    else
-        redraw
+" Create helper variables
+let s:letter_to_confirm_option = {
+    \ 'c'  : '&Cancel',
+    \ 'a'  : '&All',
+    \ 't'  : '&This',
+    \ 'o'  : '&Other',
+    \ 'h'  : '&Hidden',
+    \ 'n'  : '&Nameless',
+    \ 's'  : '&Select',
+    \ }
+let s:letter_to_function_name = {
+    \ 'c'  : '',
+    \ 'a'  : 'CloseAllBuffers',
+    \ 't'  : 'CloseThisBuffer',
+    \ 'o'  : 'CloseOtherBuffers',
+    \ 'h'  : 'CloseHiddenBuffers',
+    \ 'n'  : 'CloseNamelessBuffers',
+    \ 's'  : 'CloseSelectedBuffers',
+    \ }
+let s:confirm_string = join(map(deepcopy(s:menu_option_letters), 's:letter_to_confirm_option[v:val]'), "\n")
+
+" Define implementing functions
+function! s:CloseBuffersMenu()
+    let choice = confirm("Close Buffers?", s:confirm_string, 1)
+    let function_name = s:letter_to_function_name[s:menu_option_letters[choice - 1]]
+    if function_name != ''
+        execute 'call s:' . function_name  . '()'
     endif
 endfunction
 
 function! s:CloseThisBuffer()
     confirm bdelete
-    redraw
 endfunction
 
 function! s:CloseAllBuffers()
@@ -103,6 +122,7 @@ function! s:CloseNamelessBuffers()
     call s:PrintSuccessMessage('Nameless', deleted_count)
 endfunction
 
+" Auxiliary functions
 function! s:DeleteBuffers(buffer_numbers)
     let deleted_count = 0
     for buffer_number in a:buffer_numbers

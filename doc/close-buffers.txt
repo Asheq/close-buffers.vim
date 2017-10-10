@@ -1,29 +1,5 @@
 *close-buffers.txt*  Commands to close buffers
 
-Commands:
-
-:CloseBuffers
-    Open a menu allowing you to choose one of the other commands
-
-:CloseAllBuffers
-    Close all buffers
-
-:CloseThisBuffer
-    Close buffer in current window
-
-:CloseOtherBuffers
-    Close all buffers *except* buffer in current window
-
-:CloseHiddenBuffers
-    Close buffers not displayed in a window
-
-:CloseNamelessBuffers
-    Close buffers without names (buffers that show up as [No Name])
-
-:CloseSelectedBuffers
-    Allows you to select which buffers to close
-
-                        *close-buffers-settings*
-This plugin doesn't currently have any settings.
+Please see https://github.com/Asheq/close-buffers.vim
 
  vim:tw=78:et:ft=help:norl:
