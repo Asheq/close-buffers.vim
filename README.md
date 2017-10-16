@@ -4,21 +4,21 @@
     <thead>
         <th>Command</th>
         <th>Action</th>
-        <th>Simple Native Alternative</th>
+        <th>Native Alternative</th>
     </thead>
     <tbody>
         <tr>
-            <td><code>:CloseBuffersMenu</code> or just <code>:CloseBuffers</code></td>
+            <td><code>:CloseBuffersMenu</code> or <code>:CloseBuffers</code></td>
             <td>Open a menu allowing you to choose one of the other commands</td>
             <td></td>
         </tr>
         <tr>
-            <td><code>:CloseOtherBuffers</code> <br><i>(:fire: <i>popular)</i></td>
+            <td><code>:CloseOtherBuffers</code> <br></td>
             <td>Close all buffers <i>except</i> buffer in current window</td>
             <td></td>
         </tr>
         <tr>
-            <td><code>:CloseHiddenBuffers</code> <br><i>(:fire: popular)</i></td>
+            <td><code>:CloseHiddenBuffers</code> <br></td>
             <td>Close all buffers not displayed in any window</td>
             <td></td>
         </tr>
@@ -55,11 +55,12 @@
 
     nnoremap <silent> <C-q> :CloseBuffersMenu<CR>
 ## Install
-You can use any plugin manager you want. Here are some popular options:
+You can use any plugin manager you want. Some popular options:
 
 - vim-plug: `Plug 'Asheq/close-buffers.vim'`
+- Vundle: `Plugin 'Asheq/close-buffers.vim'`
 - Pathogen: `cd ~/.vim/bundle && git clone git://github.com/asheq/close-buffers.git`
-- Manual installation: Copy the files to your `.vim` directory.
+- Manual: Copy the files into your `.vim` directory.
 
 ## Inspiration
 This plugin was inspired by [vim-bufonly](https://github.com/schickling/vim-bufonly), but adds
