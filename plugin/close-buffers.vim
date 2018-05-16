@@ -16,9 +16,8 @@ let g:loaded_close_buffers = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-" Ingest user settings if they were specified
-let g:close_buffers_menu_options = 'c o h n s a t'
-let s:menu_option_letters = split(g:close_buffers_menu_options)
+let s:close_buffers_menu_options = 'c o h n s a t'
+let s:menu_option_letters = split(s:close_buffers_menu_options)
 
 " Define commands
 if !exists(':CloseBuffersMenu')
