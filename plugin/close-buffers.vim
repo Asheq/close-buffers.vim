@@ -6,6 +6,7 @@
 
 " TODO:
 " - Allow ! to be added to the end of any command to force close the buffers without confirms
+" - Use moll/vim-bbye to allow closing buffers without messing up layout
 
 if exists("g:loaded_close_buffers")
     finish
@@ -16,7 +17,6 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 " Ingest user settings if they were specified
-" TODO: Read user-supplied option or apply these defaults
 let g:close_buffers_menu_options = 'c o h n s a t'
 let s:menu_option_letters = split(g:close_buffers_menu_options)
 
