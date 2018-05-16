@@ -1,4 +1,4 @@
-# close-buffers.vim 📖
+# close-buffers.vim
 
 <table>
     <thead>
