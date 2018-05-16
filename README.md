@@ -51,7 +51,7 @@
 
     nnoremap <silent> Q :CloseBuffersMenu<CR>
 
-#### Alternative:
+OR
 
     nnoremap <silent> <C-q> :CloseBuffersMenu<CR>
 ## Install
