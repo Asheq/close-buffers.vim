@@ -1,4 +1,12 @@
-# close-buffers.vim
+# <code>close-buffers.vim</code>
+
+Quickly close several buffers you are no longer using.
+
+[![asciicast](https://asciinema.org/a/Q4nw2vqtuXE5X23vUtPw1PsFO.png)](https://asciinema.org/a/Q4nw2vqtuXE5X23vUtPw1PsFO)
+
+## Usage
+
+Here is the full list of commands:
 
 <table>
     <thead>
@@ -45,15 +53,17 @@
     </tbody>
 </table>
 
-[![asciicast](https://asciinema.org/a/Q4nw2vqtuXE5X23vUtPw1PsFO.png)](https://asciinema.org/a/Q4nw2vqtuXE5X23vUtPw1PsFO)
 
 ## Recommended Mapping
 
+I recommend that you map `:CloseBuffersMenu` to `Q`. (The default behavior of `Q` is to switch to "Ex" mode, which you will likely never need to use).
+
     nnoremap <silent> Q :CloseBuffersMenu<CR>
 
-OR
+Another option is to map `:CloseBuffersMenu`. (The default behavior of `<C-q>` is the same as `<C-v>` which is to enter visual block mode)
 
     nnoremap <silent> <C-q> :CloseBuffersMenu<CR>
+    
 ## Install
 You can use any plugin manager you want. Some popular options:
 
