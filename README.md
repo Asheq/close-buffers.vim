@@ -8,7 +8,7 @@
     </thead>
     <tbody>
         <tr>
-            <td><code>:CloseBuffersMenu</code> or <code>:CloseBuffers</code></td>
+            <td><code>:CloseBuffersMenu</code></td>
             <td>Open a menu allowing you to choose one of the other commands</td>
             <td></td>
         </tr>
