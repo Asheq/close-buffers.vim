@@ -6,15 +6,15 @@ Quickly close several buffers you are no longer using.
 
 ## Most Useful Commands
 
-#### `:CloseBuffersMenu`
-   Opens a menu allowing you to choose one of the other commands.
-    
-#### `:CloseOtherBuffers`
+#### `:CloseOtherBuffers` :fire:
    Closes all buffers *except* the one in the current window.
     
-#### `:CloseHiddenBuffers`
+#### `:CloseHiddenBuffers` :fire:
    Closes all buffers not displayed in *any* window.
-    
+
+#### `:CloseBuffersMenu` :fire:
+   Opens a menu allowing you to choose one of the other commands.
+
 ## Other Commands
 
 #### `:CloseNamelessBuffers`
