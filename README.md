@@ -1,58 +1,33 @@
-# <code>close-buffers.vim</code>
+# close-buffers.vim
 
 Quickly close several buffers you are no longer using.
 
 [![asciicast](https://asciinema.org/a/Q4nw2vqtuXE5X23vUtPw1PsFO.png)](https://asciinema.org/a/Q4nw2vqtuXE5X23vUtPw1PsFO)
 
-## Usage
+## Most Useful Commands
 
-Here is the full list of commands:
+#### :CloseBuffersMenu
+   Opens a menu allowing you to choose one of the other commands.
+    
+#### :CloseOtherBuffers
+   Closes all buffers *except* the one in the current window.
+    
+#### :CloseHiddenBuffers
+   Closes all buffers not displayed in *any* window.
+    
+## Other Commands
 
-<table>
-    <thead>
-        <th>Command</th>
-        <th>Action</th>
-        <th>Native Alternative</th>
-    </thead>
-    <tbody>
-        <tr>
-            <td><code>:CloseBuffersMenu</code></td>
-            <td>Open a menu allowing you to choose one of the other commands</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><code>:CloseOtherBuffers</code> <br></td>
-            <td>Close all buffers <i>except</i> buffer in current window</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><code>:CloseHiddenBuffers</code> <br></td>
-            <td>Close all buffers not displayed in any window</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><code>:CloseNamelessBuffers</code></td>
-            <td>Close buffers without names (that show up as <i>[No Name]</i>)</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><code>:CloseSelectedBuffers</code></td>
-            <td>Allows you to select which buffers to close</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><code>:CloseAllBuffers</code></td>
-            <td>Close all buffers</td>
-            <td><code>:bufdo bd</code></td>
-        </tr>
-        <tr>
-            <td><code>:CloseThisBuffer</code></td>
-            <td>Close buffer in current window</td>
-            <td><code>:bd</code></td>
-        </tr>
-    </tbody>
-</table>
+#### :CloseNamelessBuffers
+   Close buffers without names (that show up as *[No Name]*).
+    
+#### :CloseSelectedBuffers
+   Allows you to select which buffers to close.
 
+#### :CloseAllBuffers
+   Closes all buffers. You can do this natively with `:bufdo bd`
+
+#### :CloseThisBuffer
+   Close buffer in current window. You can do this natively with `:bd`
 
 ## Recommended Mapping
 
