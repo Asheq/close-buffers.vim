@@ -6,27 +6,27 @@ Quickly close several buffers you are no longer using.
 
 ## Most Useful Commands
 
-#### :CloseBuffersMenu
+#### `:CloseBuffersMenu`
    Opens a menu allowing you to choose one of the other commands.
     
-#### :CloseOtherBuffers
+#### `:CloseOtherBuffers`
    Closes all buffers *except* the one in the current window.
     
-#### :CloseHiddenBuffers
+#### `:CloseHiddenBuffers`
    Closes all buffers not displayed in *any* window.
     
 ## Other Commands
 
-#### :CloseNamelessBuffers
+#### `:CloseNamelessBuffers`
    Close buffers without names (that show up as *[No Name]*).
     
-#### :CloseSelectedBuffers
+#### `:CloseSelectedBuffers`
    Allows you to select which buffers to close.
 
-#### :CloseAllBuffers
+#### `:CloseAllBuffers`
    Closes all buffers. You can do this natively with `:bufdo bd`
 
-#### :CloseThisBuffer
+#### `:CloseThisBuffer`
    Close buffer in current window. You can do this natively with `:bd`
 
 ## Recommended Mapping
@@ -35,7 +35,7 @@ I recommend that you map `:CloseBuffersMenu` to `Q`. (The default behavior of `Q
 
     nnoremap <silent> Q :CloseBuffersMenu<CR>
 
-Another option is to map `:CloseBuffersMenu`. (The default behavior of `<C-q>` is the same as `<C-v>` which is to enter visual block mode)
+Another option is to map `:CloseBuffersMenu` to `<C-q>`. (The default behavior of `<C-q>` is the same as `<C-v>` which is to enter visual block mode)
 
     nnoremap <silent> <C-q> :CloseBuffersMenu<CR>
     
