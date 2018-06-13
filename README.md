@@ -2,7 +2,7 @@
 
 Quickly close several buffers you are no longer using.
 
-[![asciicast](https://asciinema.org/a/Q4nw2vqtuXE5X23vUtPw1PsFO.png)](https://asciinema.org/a/Q4nw2vqtuXE5X23vUtPw1PsFO)
+![demo](https://raw.githubusercontent.com/Asheq/close-buffers.vim/master/img/demo-speed.gif)
 
 ## Most Useful Commands
 
