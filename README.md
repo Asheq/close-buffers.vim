@@ -7,8 +7,7 @@ Quickly close several buffers you are no longer using.
 ## Most Useful Commands
 
 #### `:CloseOtherBuffers` :fire:
-   Closes all buffers *except* the one in the current window.
-    
+\ \ \ \ Closes all buffers *except* the one in the current window.
 #### `:CloseHiddenBuffers` :fire:
    Closes all buffers not displayed in *any* window.
 
