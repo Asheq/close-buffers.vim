@@ -49,4 +49,4 @@ This plugin was inspired by [vim-bufonly](https://github.com/schickling/vim-bufo
 several related actions.
 
 ## License
-Same license as Vim itself
+Same license as Vim itself.
