@@ -12,7 +12,7 @@ Quickly close several buffers that you no longer need.
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Close all buffers not visible in *any* window.
 
 #### `:CloseBuffersMenu` :fire:
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Lets you choose any other commands.
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Lets you choose any other command.
 
 ## More Commands
 
@@ -30,14 +30,10 @@ Quickly close several buffers that you no longer need.
 
 ## Recommended Mapping
 
-I recommend that you map `:CloseBuffersMenu` to `Q`:
-(The default behavior of `Q` is to switch to "Ex" mode, which you will likely never need to use)
+Either of the following are good options for maps:
 
     nnoremap <silent> Q :CloseBuffersMenu<CR>
-
-Another option is to map `:CloseBuffersMenu` to `<C-q>`:
-(The default behavior of `<C-q>` is the same as `<C-v>` which is to enter visual block mode)
-
+    
     nnoremap <silent> <C-q> :CloseBuffersMenu<CR>
     
 ## Install
