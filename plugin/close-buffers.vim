@@ -19,10 +19,10 @@ let g:loaded_close_buffers = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-let s:menu_option_letters = split('a c h n o s t')
+let s:menu_option_letters = split('c a h n o s t')
 let s:letter_to_confirm_option = {
-			\ 'a'  : '&All',
 			\ 'c'  : '&Cancel',
+			\ 'a'  : '&All',
 			\ 'h'  : '&Hidden',
 			\ 'n'  : '&Nameless',
 			\ 'o'  : '&Other',
@@ -30,8 +30,8 @@ let s:letter_to_confirm_option = {
 			\ 't'  : '&This',
 			\ }
 let s:letter_to_function_name = {
-			\ 'a'  : 'CloseAllBuffers',
 			\ 'c'  : '',
+			\ 'a'  : 'CloseAllBuffers',
 			\ 'h'  : 'CloseHiddenBuffers',
 			\ 'n'  : 'CloseNamelessBuffers',
 			\ 'o'  : 'CloseOtherBuffers',
