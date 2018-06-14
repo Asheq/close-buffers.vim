@@ -5,8 +5,11 @@
 " Version: 0.2
 
 " TODO:
-" - Use moll/vim-bbye to allow closing buffers without messing up layout. Use a -preserve option.
-" - Use new command names. Bdelete, BdeleteMenu, BdeleteAll, etc. Show warning for old names for 2 months.
+" - Piggy back on output of ':bdelete 12 32 13' instead of echoing your own.
+" - Use new command names. Bdelete, BdeleteMenu, BdeleteAll, etc. Show warning for old commands.
+" - Remove confirm. Allow user to use 'confirm' option themselves or use -confirm flag.
+" - Simplify CloseSelectedBuffers.
+" - Use moll/vim-bbye to allow closing buffers without messing up layout. Use a -preserve flag.
 
 if exists("g:loaded_close_buffers")
     finish
