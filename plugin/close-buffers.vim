@@ -5,8 +5,8 @@
 " Version: 0.2
 
 " TODO:
-" - Allow ! to be added to the end of any command to force close the buffers without confirms
-" - Use moll/vim-bbye to allow closing buffers without messing up layout
+" - Use moll/vim-bbye to allow closing buffers without messing up layout. Use a -preserve option.
+" - Use new command names. Bdelete, BdeleteMenu, BdeleteAll, etc. Show warning for old names for 2 months.
 
 if exists("g:loaded_close_buffers")
     finish
@@ -21,35 +21,35 @@ let s:menu_option_letters = split(s:close_buffers_menu_options)
 
 " Define commands
 if !exists(':CloseBuffersMenu')
-    command CloseBuffersMenu call s:CloseBuffersMenu()
+    command -bang CloseBuffersMenu call s:CloseBuffersMenu(<bang>0)
 endif
 
 if !exists(':CloseBuffers')
-    command CloseBuffers call s:CloseBuffersMenu()
+    command -bang CloseBuffers call s:CloseBuffersMenu(<bang>0)
 endif
 
 if !exists(':CloseAllBuffers')
-    command CloseAllBuffers call s:CloseAllBuffers()
+    command -bang CloseAllBuffers call s:CloseAllBuffers(<bang>0)
 endif
 
 if !exists(':CloseThisBuffer')
-    command CloseThisBuffer call s:CloseThisBuffer()
+    command -bang CloseThisBuffer call s:CloseThisBuffer(<bang>0)
 endif
 
 if !exists(':CloseOtherBuffers')
-    command CloseOtherBuffers call s:CloseOtherBuffers()
+    command -bang CloseOtherBuffers call s:CloseOtherBuffers(<bang>0)
 endif
 
 if !exists(':CloseHiddenBuffers')
-    command CloseHiddenBuffers call s:CloseHiddenBuffers()
+    command -bang CloseHiddenBuffers call s:CloseHiddenBuffers(<bang>0)
 endif
 
 if !exists(':CloseNamelessBuffers')
-    command CloseNamelessBuffers call s:CloseNamelessBuffers()
+    command -bang CloseNamelessBuffers call s:CloseNamelessBuffers(<bang>0)
 endif
 
 if !exists(':CloseSelectedBuffers')
-    command CloseSelectedBuffers call s:CloseSelectedBuffers()
+    command -bang CloseSelectedBuffers call s:CloseSelectedBuffers(<bang>0)
 endif
 
 " Create helper variables
@@ -74,60 +74,60 @@ let s:letter_to_function_name = {
 let s:confirm_string = join(map(deepcopy(s:menu_option_letters), 's:letter_to_confirm_option[v:val]'), "\n")
 
 " Define implementing functions
-function! s:CloseBuffersMenu()
+function! s:CloseBuffersMenu(bang)
     let choice = confirm("Close Buffers?", s:confirm_string, 1)
     let function_name = s:letter_to_function_name[s:menu_option_letters[choice - 1]]
     if function_name != ''
-        execute 'call s:' . function_name  . '()'
+        execute 'call s:' . function_name  . '('. a:bang . ')'
     endif
 endfunction
 
-function! s:CloseThisBuffer()
-    confirm bdelete
+function! s:CloseThisBuffer(bang)
+    execute 'confirm bdelete' . (a:bang ? '!' : '')
 endfunction
 
-function! s:CloseAllBuffers()
+function! s:CloseAllBuffers(bang)
     let all_buffers = range(1, bufnr('$'))
-    let deleted_count = s:DeleteBuffers(all_buffers)
+    let deleted_count = s:DeleteBuffers(all_buffers, a:bang)
     call s:PrintSuccessMessage('All', deleted_count)
 endfunction
 
-function! s:CloseOtherBuffers()
+function! s:CloseOtherBuffers(bang)
     let all_buffers = range(1, bufnr('$'))
     let current_buffer = bufnr('%')
     let other_buffers = filter(all_buffers, 'v:val != current_buffer')
-    let deleted_count = s:DeleteBuffers(other_buffers)
+    let deleted_count = s:DeleteBuffers(other_buffers, a:bang)
     call s:PrintSuccessMessage('Other', deleted_count)
 endfunction
 
-function! s:CloseHiddenBuffers()
+function! s:CloseHiddenBuffers(bang)
     let hidden_buffers = map(filter(getbufinfo(), 'empty(v:val.windows)'), 'v:val.bufnr')
-    let deleted_count = s:DeleteBuffers(hidden_buffers)
+    let deleted_count = s:DeleteBuffers(hidden_buffers, a:bang)
     call s:PrintSuccessMessage('Hidden', deleted_count)
 endfunction
 
-function! s:CloseSelectedBuffers()
+function! s:CloseSelectedBuffers(bang)
     call s:PrettyPrintBufferList()
     let input_text = input('Type space-seperated buffer numbers and <Enter>: ')
     let selected_buffers = map(split(input_text), 'str2nr(v:val)')
-    let deleted_count = s:DeleteBuffers(selected_buffers)
+    let deleted_count = s:DeleteBuffers(selected_buffers, a:bang)
     call s:PrintSuccessMessage('Selected', deleted_count)
 endfunction
 
-function! s:CloseNamelessBuffers()
+function! s:CloseNamelessBuffers(bang)
     let all_buffers = range(1, bufnr('$'))
     let nameless_buffers = filter(all_buffers, 'bufname(v:val) == ""')
-    let deleted_count = s:DeleteBuffers(nameless_buffers)
+    let deleted_count = s:DeleteBuffers(nameless_buffers, a:bang)
     call s:PrintSuccessMessage('Nameless', deleted_count)
 endfunction
 
 " Auxiliary functions
-function! s:DeleteBuffers(buffer_numbers)
+function! s:DeleteBuffers(buffer_numbers, bang)
     let deleted_count = 0
     for buffer_number in a:buffer_numbers
         if buflisted(buffer_number)
             try
-                execute 'confirm bdelete ' . buffer_number
+                execute 'confirm bdelete' . (a:bang ? '! ' : ' ') . buffer_number
             catch
             endtry
             if !buflisted(buffer_number)
