@@ -77,24 +77,24 @@ endif
 " Functions
 " --------------------
 function! s:CloseAllBuffers(bang)
-	let all_listed_buffers = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+	let all_listed_buffers = s:GetAllListedBuffers()
 	call s:DeleteBuffers(all_listed_buffers, a:bang)
 endfunction
 
 function! s:CloseOtherBuffers(bang)
-	let all_listed_buffers = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+	let all_listed_buffers = s:GetAllListedBuffers()
 	let current_buffer = bufnr('%')
 	let other_buffers = filter(all_listed_buffers, 'v:val != current_buffer')
 	call s:DeleteBuffers(other_buffers, a:bang)
 endfunction
 
 function! s:CloseHiddenBuffers(bang)
-	let hidden_buffers = map(filter(getbufinfo(), 'empty(v:val.windows)'), 'v:val.bufnr')
+	let hidden_buffers = map(filter(getbufinfo(), 'v:val.listed && empty(v:val.windows)'), 'v:val.bufnr')
 	call s:DeleteBuffers(hidden_buffers, a:bang)
 endfunction
 
 function! s:CloseNamelessBuffers(bang)
-	let all_listed_buffers = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+	let all_listed_buffers = s:GetAllListedBuffers()
 	let nameless_buffers = filter(all_listed_buffers, 'bufname(v:val) == ""')
 	call s:DeleteBuffers(nameless_buffers, a:bang)
 endfunction
@@ -127,6 +127,10 @@ endfunction
 
 function! s:GetBufferDeleteCommand(bang)
   return 'bdelete' . (a:bang ? '!' : '')
+endfunction
+
+function! s:GetAllListedBuffers()
+	return filter(range(1, bufnr('$')), 'buflisted(v:val)')
 endfunction
 
 " Teardown
