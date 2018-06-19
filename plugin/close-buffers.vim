@@ -6,8 +6,9 @@
 
 " TODO
 " --------------------
+" - Make work flawlessly with terminal
 " - Use moll/vim-bbye to allow closing buffers without messing up layout. Use a -preserve flag.
-" - Use new command names. Bdelete, BdeleteMenu, BdeleteAll, etc. Show warning for old commands.
+" - Use new command names. Bdelete, BdeleteMenu, BdeleteAll, etc. Show warning for old commands. Use new repo name?
 
 " Setup
 " --------------------
@@ -46,10 +47,6 @@ if !exists(':CloseAllBuffers')
 	command -bang CloseAllBuffers call s:CloseAllBuffers(<bang>0)
 endif
 
-if !exists(':CloseOtherBuffers')
-	command -bang CloseOtherBuffers call s:CloseOtherBuffers(<bang>0)
-endif
-
 if !exists(':CloseHiddenBuffers')
 	command -bang CloseHiddenBuffers call s:CloseHiddenBuffers(<bang>0)
 endif
@@ -58,12 +55,16 @@ if !exists(':CloseNamelessBuffers')
 	command -bang CloseNamelessBuffers call s:CloseNamelessBuffers(<bang>0)
 endif
 
-if !exists(':CloseThisBuffer')
-	command -bang CloseThisBuffer call s:CloseThisBuffer(<bang>0)
+if !exists(':CloseOtherBuffers')
+	command -bang CloseOtherBuffers call s:CloseOtherBuffers(<bang>0)
 endif
 
 if !exists(':CloseSelectedBuffers')
 	command -bang CloseSelectedBuffers call s:CloseSelectedBuffers(<bang>0)
+endif
+
+if !exists(':CloseThisBuffer')
+	command -bang CloseThisBuffer call s:CloseThisBuffer(<bang>0)
 endif
 
 if !exists(':CloseBuffers')
@@ -77,36 +78,33 @@ endif
 " Functions
 " --------------------
 function! s:CloseAllBuffers(bang)
-	let all_listed_buffers = s:GetAllListedBuffers()
-	call s:DeleteBuffers(all_listed_buffers, a:bang)
-endfunction
-
-function! s:CloseOtherBuffers(bang)
-	let all_listed_buffers = s:GetAllListedBuffers()
-	let current_buffer = bufnr('%')
-	let other_buffers = filter(all_listed_buffers, 'v:val != current_buffer')
-	call s:DeleteBuffers(other_buffers, a:bang)
+	execute '%' . s:GetBufferDeleteCommand(a:bang)
 endfunction
 
 function! s:CloseHiddenBuffers(bang)
-	let hidden_buffers = map(filter(getbufinfo(), 'v:val.listed && empty(v:val.windows)'), 'v:val.bufnr')
+  let hidden_buffers = map(filter(getbufinfo(), 'v:val.loaded && empty(v:val.windows)'), 'v:val.bufnr')
 	call s:DeleteBuffers(hidden_buffers, a:bang)
 endfunction
 
 function! s:CloseNamelessBuffers(bang)
-	let all_listed_buffers = s:GetAllListedBuffers()
-	let nameless_buffers = filter(all_listed_buffers, 'bufname(v:val) == ""')
+  let nameless_buffers = map(filter(getbufinfo(), 'v:val.loaded && v:val.name == ""'), 'v:val.bufnr')
 	call s:DeleteBuffers(nameless_buffers, a:bang)
 endfunction
 
-function! s:CloseThisBuffer(bang)
-	execute s:GetBufferDeleteCommand(a:bang)
+function! s:CloseOtherBuffers(bang)
+	let current_buffer = bufnr('%')
+  let other_buffers = map(filter(getbufinfo(), 'v:val.loaded && v:val.bufnr != current_buffer'), 'v:val.bufnr')
+	call s:DeleteBuffers(other_buffers, a:bang)
 endfunction
 
 function! s:CloseSelectedBuffers(bang)
   pwd
   ls
   call feedkeys(':' . s:GetBufferDeleteCommand(a:bang) . ' ')
+endfunction
+
+function! s:CloseThisBuffer(bang)
+	execute s:GetBufferDeleteCommand(a:bang)
 endfunction
 
 function! s:CloseBuffersMenu(bang)
@@ -127,10 +125,6 @@ endfunction
 
 function! s:GetBufferDeleteCommand(bang)
   return 'bdelete' . (a:bang ? '!' : '')
-endfunction
-
-function! s:GetAllListedBuffers()
-	return filter(range(1, bufnr('$')), 'buflisted(v:val)')
 endfunction
 
 " Teardown
