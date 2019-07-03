@@ -2,13 +2,12 @@
 " Commands to delete buffers
 " Author:	Asheq Imran <https://github.com/Asheq>
 " License:	Same license as Vim itself
-" Version: 0.3
+" Version: 0.4
 
 " TODO
 " --------------------
 " - Make work flawlessly with terminal buffers
-" - Use moll/vim-bbye to allow closing buffers without messing up layout. Use a -preserve flag.
-" - Use new command names. Bdelete, BdeleteMenu, BdeleteAll, etc. Show warning for old commands. Use new repo name?
+" - Use moll/vim-bbye to allow closing buffers without messing up layout. Use a 'preserve' flag.
 " - Add 'set confirm' as recommended setting
 
 " Setup
@@ -21,100 +20,82 @@ let g:loaded_close_buffers = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-let s:menu_option_letters = split('c a h n o s t')
-let s:letter_to_confirm_option = {
-      \ 'c'  : '&Cancel',
-      \ 'a'  : '&All',
-      \ 'h'  : '&Hidden',
-      \ 'n'  : '&Nameless',
-      \ 'o'  : '&Other',
-      \ 's'  : '&Select',
-      \ 't'  : '&This',
-      \ }
-let s:letter_to_function_name = {
-      \ 'c'  : '',
-      \ 'a'  : 'CloseAllBuffers',
-      \ 'h'  : 'CloseHiddenBuffers',
-      \ 'n'  : 'CloseNamelessBuffers',
-      \ 'o'  : 'CloseOtherBuffers',
-      \ 's'  : 'CloseSelectedBuffers',
-      \ 't'  : 'CloseThisBuffer',
-      \ }
-let s:confirm_string = join(map(deepcopy(s:menu_option_letters), 's:letter_to_confirm_option[v:val]'), "\n")
-
-" Commands
+" Helper variables
 " --------------------
-if !exists(':CloseAllBuffers')
-  command -bang CloseAllBuffers call s:CloseAllBuffers(<bang>0)
+let s:flags = ["menu", "other", "hidden", "nameless", "select", "all", "this"]
+let s:non_menu_flags = filter(deepcopy(s:flags), 'v:val != "menu"')
+
+function s:get_menu_confirm_string()
+  let non_menu_flags = deepcopy(s:non_menu_flags)
+  let non_menu_flags_with_amp = map(non_menu_flags, '"&" . v:val')
+  return join(non_menu_flags_with_amp, "\n")
+endfunction
+
+let s:menu_confirm_string = s:get_menu_confirm_string()
+
+" Main :Bdelete command and s:Bdelete function
+" --------------------------------------
+if exists(':Bdelete')
+  echo 'close-buffers.vim: You already have a ":Bdelete" command defined'
+else
+  command -bang -nargs=1 -complete=customlist,s:BdeleteCompletionOptions Bdelete call s:Bdelete(<bang>0, <f-args>)
 endif
 
-if !exists(':CloseHiddenBuffers')
-  command -bang CloseHiddenBuffers call s:CloseHiddenBuffers(<bang>0)
-endif
+function s:Bdelete(bang, flag)
+  if index(s:flags, a:flag) >= 0
+    execute 'call s:Bdelete_' . a:flag  . '('. a:bang . ')'
+  else
+    echo 'Invalid flag'
+  endif
+endfunction
 
-if !exists(':CloseNamelessBuffers')
-  command -bang CloseNamelessBuffers call s:CloseNamelessBuffers(<bang>0)
-endif
-
-if !exists(':CloseOtherBuffers')
-  command -bang CloseOtherBuffers call s:CloseOtherBuffers(<bang>0)
-endif
-
-if !exists(':CloseSelectedBuffers')
-  command -bang CloseSelectedBuffers call s:CloseSelectedBuffers(<bang>0)
-endif
-
-if !exists(':CloseThisBuffer')
-  command -bang CloseThisBuffer call s:CloseThisBuffer(<bang>0)
-endif
-
-if !exists(':CloseBuffers')
-  command -bang CloseBuffers call s:CloseBuffersMenu(<bang>0)
-endif
-
-if !exists(':CloseBuffersMenu')
-  command -bang CloseBuffersMenu call s:CloseBuffersMenu(<bang>0)
-endif
+function s:BdeleteCompletionOptions(ArgLead, CmdLine, CursorPos) abort
+  let matches = []
+  for f in s:flags
+    if f =~ '^' . a:ArgLead
+      call add(matches, f)
+    endif
+  endfor
+  return matches
+endfunction
 
 " Functions
 " --------------------
-function! s:CloseAllBuffers(bang)
-  let all_buffers = map(s:getListedOrLoadedBuffers(), 'v:val.bufnr')
-  call s:DeleteBuffers(all_buffers , a:bang)
+function! s:Bdelete_menu(bang)
+  let choice = confirm("Delete Buffers?", s:menu_confirm_string, 1)
+  let flag = s:non_menu_flags[choice - 1]
+  call s:Bdelete(a:bang, flag)
 endfunction
 
-function! s:CloseHiddenBuffers(bang)
-  let hidden_buffers = map(filter(s:getListedOrLoadedBuffers(), 'empty(v:val.windows)'), 'v:val.bufnr')
-  call s:DeleteBuffers(hidden_buffers, a:bang)
-endfunction
-
-function! s:CloseNamelessBuffers(bang)
-  let nameless_buffers = map(filter(s:getListedOrLoadedBuffers(), 'v:val.name == ""'), 'v:val.bufnr')
-  call s:DeleteBuffers(nameless_buffers, a:bang)
-endfunction
-
-function! s:CloseOtherBuffers(bang)
+function! s:Bdelete_other(bang)
   let current_buffer = bufnr('%')
   let other_buffers = map(filter(s:getListedOrLoadedBuffers(), 'v:val.bufnr != current_buffer'), 'v:val.bufnr')
   call s:DeleteBuffers(other_buffers, a:bang)
 endfunction
 
-function! s:CloseSelectedBuffers(bang)
+function! s:Bdelete_hidden(bang)
+  let hidden_buffers = map(filter(s:getListedOrLoadedBuffers(), 'empty(v:val.windows)'), 'v:val.bufnr')
+  call s:DeleteBuffers(hidden_buffers, a:bang)
+endfunction
+
+function! s:Bdelete_nameless(bang)
+  let nameless_buffers = map(filter(s:getListedOrLoadedBuffers(), 'v:val.name == ""'), 'v:val.bufnr')
+  call s:DeleteBuffers(nameless_buffers, a:bang)
+endfunction
+
+function! s:Bdelete_select(bang)
   pwd
   ls
   call feedkeys(':' . s:GetBufferDeleteCommand(a:bang) . ' ')
 endfunction
 
-function! s:CloseThisBuffer(bang)
-  execute s:GetBufferDeleteCommand(a:bang)
+function! s:Bdelete_all(bang)
+  let all_buffers = map(s:getListedOrLoadedBuffers(), 'v:val.bufnr')
+  call s:DeleteBuffers(all_buffers , a:bang)
 endfunction
 
-function! s:CloseBuffersMenu(bang)
-  let choice = confirm("Delete Buffers?", s:confirm_string, 1)
-  let function_name = s:letter_to_function_name[s:menu_option_letters[choice - 1]]
-  if function_name != ''
-    execute 'call s:' . function_name  . '('. a:bang . ')'
-  endif
+function! s:Bdelete_this(bang)
+  execute s:GetBufferDeleteCommand(a:bang)
 endfunction
 
 " Helper functions
@@ -132,6 +113,40 @@ endfunction
 function s:getListedOrLoadedBuffers()
   return filter(getbufinfo(), 'v:val.listed || v:val.loaded')
 endfunction
+
+" Obsolete Commands
+" --------------------
+if !exists(':CloseAllBuffers')
+  command -bang CloseAllBuffers echo 'Use :Bdelete all'
+endif
+
+if !exists(':CloseHiddenBuffers')
+  command -bang CloseHiddenBuffers echo 'Use :Bdelete hidden'
+endif
+
+if !exists(':CloseNamelessBuffers')
+  command -bang CloseNamelessBuffers echo 'Use :Bdelete nameless'
+endif
+
+if !exists(':CloseOtherBuffers')
+  command -bang CloseOtherBuffers echo 'Use :Bdelete other'
+endif
+
+if !exists(':CloseSelectedBuffers')
+  command -bang CloseSelectedBuffers echo 'Use :Bdelete select'
+endif
+
+if !exists(':CloseThisBuffer')
+  command -bang CloseThisBuffer echo 'Use :Bdelete this'
+endif
+
+if !exists(':CloseBuffers')
+  command -bang CloseBuffers echo 'Use :Bdelete menu'
+endif
+
+if !exists(':CloseBuffersMenu')
+  command -bang CloseBuffersMenu echo 'Use :Bdelete menu'
+endif
 
 " Teardown
 " --------------------
