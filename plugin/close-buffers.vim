@@ -22,13 +22,13 @@ set cpo&vim
 
 " Helper variables
 " --------------------
-let s:flags = ["menu", "other", "hidden", "nameless", "select", "all", "this"]
-let s:non_menu_flags = filter(deepcopy(s:flags), 'v:val != "menu"')
+let s:flags =      ["Menu"  , "Other", "Hidden", "Nameless", "All", "Select", "This"]
+let s:menu_flags = ["Cancel", "Other", "Hidden", "Nameless", "All", "Select", "This"]
 
 function s:get_menu_confirm_string()
-  let non_menu_flags = deepcopy(s:non_menu_flags)
-  let non_menu_flags_with_amp = map(non_menu_flags, '"&" . v:val')
-  return join(non_menu_flags_with_amp, "\n")
+  let menu_flags = deepcopy(s:menu_flags)
+  let menu_flags_with_amp = map(menu_flags, '"&" . v:val')
+  return join(menu_flags_with_amp, "\n")
 endfunction
 
 let s:menu_confirm_string = s:get_menu_confirm_string()
@@ -61,40 +61,42 @@ endfunction
 
 " Functions
 " --------------------
-function! s:Bdelete_menu(bang)
+function! s:Bdelete_Menu(bang)
   let choice = confirm("Delete Buffers?", s:menu_confirm_string, 1)
-  let flag = s:non_menu_flags[choice - 1]
-  call s:Bdelete(a:bang, flag)
+  if (choice != 1)
+    let flag = s:menu_flags[choice - 1]
+    call s:Bdelete(a:bang, flag)
+  endif
 endfunction
 
-function! s:Bdelete_other(bang)
+function! s:Bdelete_Other(bang)
   let current_buffer = bufnr('%')
   let other_buffers = map(filter(s:getListedOrLoadedBuffers(), 'v:val.bufnr != current_buffer'), 'v:val.bufnr')
   call s:DeleteBuffers(other_buffers, a:bang)
 endfunction
 
-function! s:Bdelete_hidden(bang)
+function! s:Bdelete_Hidden(bang)
   let hidden_buffers = map(filter(s:getListedOrLoadedBuffers(), 'empty(v:val.windows)'), 'v:val.bufnr')
   call s:DeleteBuffers(hidden_buffers, a:bang)
 endfunction
 
-function! s:Bdelete_nameless(bang)
+function! s:Bdelete_Nameless(bang)
   let nameless_buffers = map(filter(s:getListedOrLoadedBuffers(), 'v:val.name == ""'), 'v:val.bufnr')
   call s:DeleteBuffers(nameless_buffers, a:bang)
 endfunction
 
-function! s:Bdelete_select(bang)
+function! s:Bdelete_All(bang)
+  let all_buffers = map(s:getListedOrLoadedBuffers(), 'v:val.bufnr')
+  call s:DeleteBuffers(all_buffers , a:bang)
+endfunction
+
+function! s:Bdelete_Select(bang)
   pwd
   ls
   call feedkeys(':' . s:GetBufferDeleteCommand(a:bang) . ' ')
 endfunction
 
-function! s:Bdelete_all(bang)
-  let all_buffers = map(s:getListedOrLoadedBuffers(), 'v:val.bufnr')
-  call s:DeleteBuffers(all_buffers , a:bang)
-endfunction
-
-function! s:Bdelete_this(bang)
+function! s:Bdelete_This(bang)
   execute s:GetBufferDeleteCommand(a:bang)
 endfunction
 
