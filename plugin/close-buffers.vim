@@ -49,7 +49,7 @@ function! s:Bdelete(bang, flag)
   endif
 endfunction
 
-function s:BdeleteCompletionOptions(ArgLead, CmdLine, CursorPos) abort
+function! s:BdeleteCompletionOptions(ArgLead, CmdLine, CursorPos) abort
   let matches = []
   for f in s:flags
     if f =~ '^' . a:ArgLead
@@ -112,7 +112,7 @@ function! s:GetBufferDeleteCommand(bang)
   return 'bdelete' . (a:bang ? '!' : '')
 endfunction
 
-function s:getListedOrLoadedBuffers()
+function! s:getListedOrLoadedBuffers()
   return filter(getbufinfo(), 'v:val.listed || v:val.loaded')
 endfunction
 
