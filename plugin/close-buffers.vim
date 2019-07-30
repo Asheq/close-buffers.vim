@@ -25,7 +25,7 @@ set cpo&vim
 let s:flags =      ["Menu"  , "Other", "Hidden", "Nameless", "All", "Select", "This"]
 let s:menu_flags = ["Cancel", "Other", "Hidden", "Nameless", "All", "Select", "This"]
 
-function s:get_menu_confirm_string()
+function! s:get_menu_confirm_string()
   let menu_flags = deepcopy(s:menu_flags)
   let menu_flags_with_amp = map(menu_flags, '"&" . v:val')
   return join(menu_flags_with_amp, "\n")
@@ -41,7 +41,7 @@ else
   command -bang -nargs=1 -complete=customlist,s:BdeleteCompletionOptions Bdelete call s:Bdelete(<bang>0, <f-args>)
 endif
 
-function s:Bdelete(bang, flag)
+function! s:Bdelete(bang, flag)
   if index(s:flags, a:flag) >= 0
     execute 'call s:Bdelete_' . a:flag  . '('. a:bang . ')'
   else
