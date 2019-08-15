@@ -50,22 +50,22 @@ endfunction
 
 function! s:Bdelete_Other(bang)
   let current_buffer = bufnr('%')
-  let other_buffers = map(filter(s:getListedOrLoadedBuffers(), 'v:val.bufnr != current_buffer'), 'v:val.bufnr')
+  let other_buffers = map(filter(s:getListedBuffers(), 'v:val.bufnr != current_buffer'), 'v:val.bufnr')
   call s:DeleteBuffers(other_buffers, a:bang)
 endfunction
 
 function! s:Bdelete_Hidden(bang)
-  let hidden_buffers = map(filter(s:getListedOrLoadedBuffers(), 'empty(v:val.windows)'), 'v:val.bufnr')
+  let hidden_buffers = map(filter(s:getListedBuffers(), 'empty(v:val.windows)'), 'v:val.bufnr')
   call s:DeleteBuffers(hidden_buffers, a:bang)
 endfunction
 
 function! s:Bdelete_Nameless(bang)
-  let nameless_buffers = map(filter(s:getListedOrLoadedBuffers(), 'v:val.name == ""'), 'v:val.bufnr')
+  let nameless_buffers = map(filter(s:getListedBuffers(), 'v:val.name == ""'), 'v:val.bufnr')
   call s:DeleteBuffers(nameless_buffers, a:bang)
 endfunction
 
 function! s:Bdelete_All(bang)
-  let all_buffers = map(s:getListedOrLoadedBuffers(), 'v:val.bufnr')
+  let all_buffers = map(s:getListedBuffers(), 'v:val.bufnr')
   call s:DeleteBuffers(all_buffers , a:bang)
 endfunction
 
@@ -92,7 +92,7 @@ function! s:GetBufferDeleteCommand(bang)
   return 'bdelete' . (a:bang ? '!' : '')
 endfunction
 
-function! s:getListedOrLoadedBuffers()
-  return filter(getbufinfo(), 'v:val.listed || v:val.loaded')
+function! s:getListedBuffers()
+  return filter(getbufinfo(), 'v:val.listed')
 endfunction
 
