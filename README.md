@@ -1,8 +1,8 @@
 # close-buffers.vim
 
-Quickly close several buffers that you no longer need.
+TODO: This Readme needs to be updated
 
-![demo](https://raw.githubusercontent.com/Asheq/close-buffers.vim/master/img/demo-speed.gif)
+Quickly close several buffers that you no longer need.
 
 ## Most Useful Commands
 
