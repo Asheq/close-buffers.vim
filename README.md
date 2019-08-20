@@ -6,6 +6,8 @@ prune your buffer list or free up memory.
 It provides a single new command called `Bdelete` that takes a single parameter describing which
 buffers to `bdelete`. See the list of possible parameters [below](#commands).
 
+## Demo Video
+
 ![demo](https://raw.githubusercontent.com/Asheq/close-buffers.vim/change-command/img/demo.gif)
 
 ## Commands
@@ -65,5 +67,4 @@ several related actions.
 Same license as Vim itself.
 
 ### Todo
-- Allow the option of bdeleting buffers without messing up window layout
-- Add gif to demonstrate commands
+- Add option to not mess up window layout
