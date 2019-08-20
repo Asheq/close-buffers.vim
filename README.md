@@ -33,7 +33,17 @@ nnoremap <silent> <C-q> :Bdelete menu<CR>
 nnoremap <silent> Q     :Bdelete menu<CR>
 ```
 
-## Buffers with unsaved changes
+## Install
+You can use any plugin manager you want. Some popular options:
+
+- [vim-plug](https://github.com/junegunn/vim-plug): `Plug 'Asheq/close-buffers.vim'`
+- [Vundle](https://github.com/VundleVim/Vundle.vim): `Plugin 'Asheq/close-buffers.vim'`
+- [pathogen](https://github.com/tpope/vim-pathogen): `cd ~/.vim/bundle && git clone git://github.com/asheq/close-buffers.git`
+- Manual: Copy the files into your `.vim` directory.
+
+## Other Info
+
+#### Buffers with unsaved changes
 By default, `Bdelete` will fail to `bdelete` modified buffers, i.e., buffers that have unsaved
 changes.
 
@@ -43,25 +53,17 @@ i.e., `Bdelete!`.
 Alternatively, you can configure Vim to ask you to interactively confirm each modified buffer being
 `bdeleted`. This can be done by setting the native Vim `confirm` option with `:set confirm`.
 
-## Bwipeout
+#### Bwipeout
 If you know what you are doing, you can use `Bwipeout` instead of `Bdelete` to `bwipeout` buffers
 instead of `bdelete` them. `Bwipeout` has the same [parameters](#commands) as `Bdelete`.
 
-## Install
-You can use any plugin manager you want. Some popular options:
-
-- [vim-plug](https://github.com/junegunn/vim-plug): `Plug 'Asheq/close-buffers.vim'`
-- [Vundle](https://github.com/VundleVim/Vundle.vim): `Plugin 'Asheq/close-buffers.vim'`
-- [pathogen](https://github.com/tpope/vim-pathogen): `cd ~/.vim/bundle && git clone git://github.com/asheq/close-buffers.git`
-- Manual: Copy the files into your `.vim` directory.
-
-## Inspiration
+#### Inspiration
 This plugin was inspired by [vim-bufonly](https://github.com/schickling/vim-bufonly), but adds
 several related actions.
 
-## License
+#### License
 Same license as Vim itself.
 
-## Todo
+#### Todo
 - Allow the option of bdeleting buffers without messing up window layout
 - Add gif to demonstrate commands
