@@ -6,8 +6,9 @@
 
 " TODO
 " --------------------
+" - Use moll/vim-bbye to allow closing buffers without messing up layout. Use a 'preserve' flag or a
+"   global variable
 " - Make work flawlessly with terminal buffers
-" - Use moll/vim-bbye to allow closing buffers without messing up layout. Use a 'preserve' flag.
 " - Add 'set confirm' as recommended setting
 
 " Setup
@@ -26,7 +27,7 @@ let s:options =  ["menu", "other", "hidden", "nameless", "all", "select", "this"
 let s:menu_options = ["cancel", "other", "hidden", "nameless", "all", "select", "this"]
 
 function! s:get_menu_confirm_string()
-  let menu_options = deepcopy(["cancel", "other", "hidden", "nameless", "all", "select", "this"])
+  let menu_options = copy(s:menu_options)
   let menu_options_with_amp = map(menu_options, '"&" . v:val')
   return join(menu_options_with_amp, "\n")
 endfunction
@@ -38,13 +39,13 @@ let s:menu_confirm_string = s:get_menu_confirm_string()
 if exists(':Bdelete')
   echo 'close-buffers.vim: You already have a ":Bdelete" command defined'
 else
-  command -bang -nargs=1 -complete=customlist,s:bcloseCompletionOptions Bdelete call s:bclose('bdelete', <bang>0, <f-args>)
+  command -bang -nargs=1 -complete=customlist,s:bclose_completion_options Bdelete call s:bclose('bdelete', <bang>0, <f-args>)
 endif
 
 if exists(':Bwipeout')
   echo 'close-buffers.vim: You already have a ":Bwipeout" command defined'
 else
-  command -bang -nargs=1 -complete=customlist,s:bcloseCompletionOptions Bwipeout call s:bclose('bwipeout', <bang>0, <f-args>)
+  command -bang -nargs=1 -complete=customlist,s:bclose_completion_options Bwipeout call s:bclose('bwipeout', <bang>0, <f-args>)
 endif
 
 " Functions
@@ -78,7 +79,7 @@ function! s:bclose(command, bang, option)
   endif
 endfunction
 
-function! s:bcloseCompletionOptions(ArgLead, CmdLine, CursorPos) abort
+function! s:bclose_completion_options(ArgLead, CmdLine, CursorPos) abort
   let matches = []
   for f in s:options
     if f =~ '^' . a:ArgLead
@@ -93,7 +94,7 @@ function! s:bclose_menu(command, bang)
   let choice = confirm(word . " Buffers?", s:menu_confirm_string, 1)
   if (choice != 1)
     let option = s:menu_options[choice - 1]
-    call s:bclose(a:bang, option, a:command)
+    call s:bclose(a:command, a:bang, option)
   endif
 endfunction
 
@@ -136,35 +137,35 @@ endfunction
 " Obsolete Commands
 " --------------------
 if !exists(':CloseAllBuffers')
-  command -bang CloseAllBuffers echo 'Use :Bdelete all'
+  command -bang CloseAllBuffers echo 'close-buffers.vim: Use :Bdelete all'
 endif
 
 if !exists(':CloseHiddenBuffers')
-  command -bang CloseHiddenBuffers echo 'Use :Bdelete hidden'
+  command -bang CloseHiddenBuffers echo 'close-buffers.vim: Use :Bdelete hidden'
 endif
 
 if !exists(':CloseNamelessBuffers')
-  command -bang CloseNamelessBuffers echo 'Use :Bdelete nameless'
+  command -bang CloseNamelessBuffers echo 'close-buffers.vim: Use :Bdelete nameless'
 endif
 
 if !exists(':CloseOtherBuffers')
-  command -bang CloseOtherBuffers echo 'Use :Bdelete other'
+  command -bang CloseOtherBuffers echo 'close-buffers.vim: Use :Bdelete other'
 endif
 
 if !exists(':CloseSelectedBuffers')
-  command -bang CloseSelectedBuffers echo 'Use :Bdelete select'
+  command -bang CloseSelectedBuffers echo 'close-buffers.vim: Use :Bdelete select'
 endif
 
 if !exists(':CloseThisBuffer')
-  command -bang CloseThisBuffer echo 'Use :Bdelete this'
+  command -bang CloseThisBuffer echo 'close-buffers.vim: Use :Bdelete this'
 endif
 
 if !exists(':CloseBuffers')
-  command -bang CloseBuffers echo 'Use :Bdelete menu'
+  command -bang CloseBuffers echo 'close-buffers.vim: Use :Bdelete menu'
 endif
 
 if !exists(':CloseBuffersMenu')
-  command -bang CloseBuffersMenu echo 'Use :Bdelete menu'
+  command -bang CloseBuffersMenu echo 'close-buffers.vim: Use :Bdelete menu'
 endif
 
 " Teardown
