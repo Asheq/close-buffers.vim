@@ -43,7 +43,7 @@ You can use any plugin manager you want. Some popular options:
 
 ## Other Info
 
-#### Buffers with unsaved changes
+### Buffers with unsaved changes
 By default, `Bdelete` will fail to `bdelete` modified buffers, i.e., buffers that have unsaved
 changes.
 
@@ -53,17 +53,17 @@ i.e., `Bdelete!`.
 Alternatively, you can configure Vim to ask you to interactively confirm each modified buffer being
 `bdeleted`. This can be done by setting the native Vim `confirm` option with `:set confirm`.
 
-#### Bwipeout
+### Bwipeout
 If you know what you are doing, you can use `Bwipeout` instead of `Bdelete` to `bwipeout` buffers
 instead of `bdelete` them. `Bwipeout` has the same [parameters](#commands) as `Bdelete`.
 
-#### Inspiration
+### Inspiration
 This plugin was inspired by [vim-bufonly](https://github.com/schickling/vim-bufonly), but adds
 several related actions.
 
-#### License
+### License
 Same license as Vim itself.
 
-#### Todo
+### Todo
 - Allow the option of bdeleting buffers without messing up window layout
 - Add gif to demonstrate commands
