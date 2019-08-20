@@ -91,20 +91,6 @@ function! s:bclose_menu(command, bang)
   endif
 endfunction
 
-function! s:Bdelete_Hidden(bang)
-  let hidden_buffers = map(filter(s:getListedBuffers(), 'empty(v:val.windows)'), 'v:val.bufnr')
-  call s:DeleteBuffers(hidden_buffers, a:bang)
-endfunction
-
-function! s:Bdelete_Nameless(bang)
-  let nameless_buffers = map(filter(s:getListedBuffers(), 'v:val.name == ""'), 'v:val.bufnr')
-  call s:DeleteBuffers(nameless_buffers, a:bang)
-endfunction
-
-function! s:Bdelete_All(bang)
-  call s:DeleteBuffers(all_buffers , a:bang)
-endfunction
-
 " Helper functions
 " --------------------
 function! s:close_buffers(command, bang, buffer_numbers)
