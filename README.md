@@ -6,7 +6,7 @@ prune your buffer list or free up memory.
 It provides a single new command called `Bdelete` that takes a single parameter describing which
 buffers to `bdelete`. See the list of possible parameters [below](#commands).
 
-<!-- TODO: Add a gif -->
+![demo](https://raw.githubusercontent.com/Asheq/close-buffers.vim/master/img/demo.gif)
 
 ## Commands
 
