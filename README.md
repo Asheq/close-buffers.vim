@@ -1,47 +1,58 @@
 # close-buffers.vim
 
-TODO: This Readme needs to be updated
+This plug-in allows you to quickly `bdelete` several buffers at a time. It is useful if you want to
+prune your buffer list or free up memory.
 
-Quickly close several buffers that you no longer need.
+It provides a single new command called `Bdelete` that takes a single parameter describing which
+buffers to `bdelete`. See the list of possible parameters [below](#commands).
 
-## Most Useful Commands
+<!-- TODO: Add a gif -->
 
-#### `:CloseOtherBuffers` :fire:
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Close all buffers *except* buffer in current window.
-#### `:CloseHiddenBuffers` :fire:
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Close all buffers not visible in *any* window.
+## Commands
 
-#### `:CloseBuffersMenu` :fire:
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Lets you choose any other command.
+Command               | Description                                                     | Native version
+ --------             | -----------                                                     | ------------------
+ `:Bdelete other` 🔥  | `bdelete` all buffers *except* the buffer in the current window |
+ `:Bdelete hidden` 🔥 | `bdelete` buffers not visible in a window                       |
+ `:Bdelete all`       | `bdelete` all buffers                                           | `:bufdo bdelete`
+ `:Bdelete this`      | `bdelete` buffer in the current window                          | `:bdelete`
+ `:Bdelete nameless`  | `bdelete` buffers without a name: *[No Name]*                   |
+ `:Bdelete select`    | Lets you interactively select which buffers to `bdelete`        |
+ `:Bdelete menu`      | Lets you interactively choose an above command                  |
 
-## More Commands
+🔥 = Popular
 
-#### `:CloseNamelessBuffers`
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Close buffers without names (*[No Name]*).
-    
-#### `:CloseSelectedBuffers`
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Lets you select which buffers to close.
+## Recommended key mapping
 
-#### `:CloseAllBuffers`
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Close all buffers. You can do this natively with `:bufdo bd`
+I recommend one of the following key mappings:
 
-#### `:CloseThisBuffer`
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Close buffer in current window. You can do this natively with `:bd`
+```
+nnoremap <silent> <C-q> :Bdelete menu<CR>
+```
+```
+nnoremap <silent> Q     :Bdelete menu<CR>
+```
 
-## Recommended Mapping
+## Buffers with unsaved changes
+By default, `Bdelete` will fail to `bdelete` modified buffers, i.e., buffers that have unsaved
+changes.
 
-Either of the following are good options for maps:
+In order to force `Bdelete` to `bdelete` modified buffers, add a bang to the end of the command,
+i.e., `Bdelete!`.
 
-    nnoremap <silent> Q :CloseBuffersMenu<CR>
-    
-    nnoremap <silent> <C-q> :CloseBuffersMenu<CR>
-    
+Alternatively, you can configure Vim to ask you to interactively confirm each modified buffer being
+`bdeleted`. This can be done by setting the native Vim `confirm` option with `:set confirm`.
+
+## Bwipeout
+If you know what you are doing, you can use `Bwipeout` instead of `Bdelete` to `bwipeout` buffers
+instead of `bdelete` them. `Bwipeout` has the same [parameters](#commands) as `Bdelete`.
+
 ## Install
 You can use any plugin manager you want. Some popular options:
 
-- vim-plug: `Plug 'Asheq/close-buffers.vim'`
-- Vundle: `Plugin 'Asheq/close-buffers.vim'`
-- Pathogen: `cd ~/.vim/bundle && git clone git://github.com/asheq/close-buffers.git`
+- [vim-plug](https://github.com/junegunn/vim-plug): `Plug 'Asheq/close-buffers.vim'`
+- [Vundle](https://github.com/VundleVim/Vundle.vim): `Plugin 'Asheq/close-buffers.vim'`
+- [pathogen](https://github.com/tpope/vim-pathogen): `cd ~/.vim/bundle && git clone git://github.com/asheq/close-buffers.git`
 - Manual: Copy the files into your `.vim` directory.
 
 ## Inspiration
@@ -50,3 +61,7 @@ several related actions.
 
 ## License
 Same license as Vim itself.
+
+## Todo
+- Allow the option of bdeleting buffers without messing up window layout
+- Add gif to demonstrate commands

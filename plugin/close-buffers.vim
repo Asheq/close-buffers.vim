@@ -2,13 +2,7 @@
 " Commands to delete buffers
 " Author:	Asheq Imran <https://github.com/Asheq>
 " License:	Same license as Vim itself
-" Version: 0.4
-
-" TODO
-" --------------------
-" - Use moll/vim-bbye to allow closing buffers without messing up layout. Use a 'preserve' flag or a
-"   global variable
-" - Make work flawlessly with terminal buffers
+" Version: 0.5
 
 " Setup
 " --------------------
