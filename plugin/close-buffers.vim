@@ -36,13 +36,13 @@ let s:menu_confirm_string = s:get_menu_confirm_string()
 " Commands
 " --------------------
 if exists(':Bdelete')
-  throw 'close-buffers.vim: You already have a ":Bdelete" command defined'
+  echo 'close-buffers.vim: You already have a ":Bdelete" command defined'
 else
   command -bang -nargs=1 -complete=customlist,s:bcloseCompletionOptions Bdelete call s:bclose('bdelete', <bang>0, <f-args>)
 endif
 
 if exists(':Bwipeout')
-  throw 'close-buffers.vim: You already have a ":Bwipeout" command defined'
+  echo 'close-buffers.vim: You already have a ":Bwipeout" command defined'
 else
   command -bang -nargs=1 -complete=customlist,s:bcloseCompletionOptions Bwipeout call s:bclose('bwipeout', <bang>0, <f-args>)
 endif
@@ -51,7 +51,7 @@ endif
 " --------------------
 function! s:bclose(command, bang, option)
   if index(s:options, a:option) < 0
-    throw 'close-buffers.vim: Invalid option'
+    echo 'close-buffers.vim: Invalid option: ' . a:option
   endif
 
   if (a:option == 'menu')
@@ -115,8 +115,7 @@ endfunction
 " --------------------
 function! s:close_buffers(command, bang, buffer_numbers)
   if !empty(a:buffer_numbers)
-    " execute s:append_bang(a:command, a:bang) . ' ' . join(a:buffer_numbers)
-    echo s:append_bang(a:command, a:bang) . ' ' . join(a:buffer_numbers)
+    execute s:append_bang(a:command, a:bang) . ' ' . join(a:buffer_numbers)
   endif
 endfunction
 
@@ -130,7 +129,7 @@ function! s:get_relevant_bufinfo(command)
   elseif (a:command == 'bwipeout')
     return getbufinfo()
   else
-    throw 'close-buffers.vim: Invalid command'
+    echo 'close-buffers.vim: Invalid command: ' . a:command
   endif
 endfunction
 
