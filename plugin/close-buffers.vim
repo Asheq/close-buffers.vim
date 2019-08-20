@@ -9,7 +9,6 @@
 " - Use moll/vim-bbye to allow closing buffers without messing up layout. Use a 'preserve' flag or a
 "   global variable
 " - Make work flawlessly with terminal buffers
-" - Add 'set confirm' as recommended setting
 
 " Setup
 " --------------------
@@ -137,35 +136,35 @@ endfunction
 " Obsolete Commands
 " --------------------
 if !exists(':CloseAllBuffers')
-  command -bang CloseAllBuffers echo 'close-buffers.vim: Use :Bdelete all'
+  command -bang CloseAllBuffers echo '":CloseAllBuffers" is obsolete. Use ":Bdelete all" instead.'
 endif
 
 if !exists(':CloseHiddenBuffers')
-  command -bang CloseHiddenBuffers echo 'close-buffers.vim: Use :Bdelete hidden'
+  command -bang CloseHiddenBuffers echo '":CloseHiddenBuffers" is obsolete. Use ":Bdelete hidden" instead.'
 endif
 
 if !exists(':CloseNamelessBuffers')
-  command -bang CloseNamelessBuffers echo 'close-buffers.vim: Use :Bdelete nameless'
+  command -bang CloseNamelessBuffers echo '":CloseNamelessBuffers" is obsolete. Use ":Bdelete nameless" instead.'
 endif
 
 if !exists(':CloseOtherBuffers')
-  command -bang CloseOtherBuffers echo 'close-buffers.vim: Use :Bdelete other'
+  command -bang CloseOtherBuffers echo '":CloseOtherBuffers" is obsolete. Use ":Bdelete other" instead.'
 endif
 
 if !exists(':CloseSelectedBuffers')
-  command -bang CloseSelectedBuffers echo 'close-buffers.vim: Use :Bdelete select'
+  command -bang CloseSelectedBuffers echo '":CloseSelectedBuffers" is obsolete. Use ":Bdelete select" instead.'
 endif
 
 if !exists(':CloseThisBuffer')
-  command -bang CloseThisBuffer echo 'close-buffers.vim: Use :Bdelete this'
+  command -bang CloseThisBuffer echo '":CloseThisBuffer" is obsolete. Use ":Bdelete this" instead.'
 endif
 
 if !exists(':CloseBuffers')
-  command -bang CloseBuffers echo 'close-buffers.vim: Use :Bdelete menu'
+  command -bang CloseBuffers echo '":CloseBuffers" is obsolete. Use ":Bdelete menu" instead.'
 endif
 
 if !exists(':CloseBuffersMenu')
-  command -bang CloseBuffersMenu echo 'close-buffers.vim: Use :Bdelete menu'
+  command -bang CloseBuffersMenu echo '":CloseBuffersMenu" is obsolete. Use ":Bdelete menu" instead.'
 endif
 
 " Teardown
