@@ -30,13 +30,13 @@ let s:menu_confirm_string = s:get_menu_confirm_string()
 " Commands
 " --------------------
 if exists(':Bdelete')
-  echo 'close-buffers.vim: You already have a ":Bdelete" command defined'
+  echoerr 'close-buffers.vim: You already have a ":Bdelete" command defined'
 else
   command -bang -nargs=1 -complete=customlist,s:bclose_completion_options Bdelete call s:bclose('bdelete', <bang>0, <f-args>)
 endif
 
 if exists(':Bwipeout')
-  echo 'close-buffers.vim: You already have a ":Bwipeout" command defined'
+  echoerr 'close-buffers.vim: You already have a ":Bwipeout" command defined'
 else
   command -bang -nargs=1 -complete=customlist,s:bclose_completion_options Bwipeout call s:bclose('bwipeout', <bang>0, <f-args>)
 endif
@@ -45,7 +45,7 @@ endif
 " --------------------
 function! s:bclose(command, bang, option)
   if index(s:options, a:option) < 0
-    echo 'close-buffers.vim: Invalid option: ' . a:option
+    echoerr 'close-buffers.vim: Invalid option: ' . a:option
   endif
 
   if (a:option == 'menu')
@@ -109,42 +109,42 @@ function! s:get_relevant_bufinfo(command)
   elseif (a:command == 'bwipeout')
     return getbufinfo()
   else
-    echo 'close-buffers.vim: Invalid command: ' . a:command
+    echoerr 'close-buffers.vim: Invalid command: ' . a:command
   endif
 endfunction
 
 " Obsolete Commands
 " --------------------
 if !exists(':CloseAllBuffers')
-  command -bang CloseAllBuffers echo '":CloseAllBuffers" is obsolete. Use ":Bdelete all" instead.'
+  command -bang CloseAllBuffers echoerr '":CloseAllBuffers" is obsolete. Use ":Bdelete all" instead.'
 endif
 
 if !exists(':CloseHiddenBuffers')
-  command -bang CloseHiddenBuffers echo '":CloseHiddenBuffers" is obsolete. Use ":Bdelete hidden" instead.'
+  command -bang CloseHiddenBuffers echoerr '":CloseHiddenBuffers" is obsolete. Use ":Bdelete hidden" instead.'
 endif
 
 if !exists(':CloseNamelessBuffers')
-  command -bang CloseNamelessBuffers echo '":CloseNamelessBuffers" is obsolete. Use ":Bdelete nameless" instead.'
+  command -bang CloseNamelessBuffers echoerr '":CloseNamelessBuffers" is obsolete. Use ":Bdelete nameless" instead.'
 endif
 
 if !exists(':CloseOtherBuffers')
-  command -bang CloseOtherBuffers echo '":CloseOtherBuffers" is obsolete. Use ":Bdelete other" instead.'
+  command -bang CloseOtherBuffers echoerr '":CloseOtherBuffers" is obsolete. Use ":Bdelete other" instead.'
 endif
 
 if !exists(':CloseSelectedBuffers')
-  command -bang CloseSelectedBuffers echo '":CloseSelectedBuffers" is obsolete. Use ":Bdelete select" instead.'
+  command -bang CloseSelectedBuffers echoerr '":CloseSelectedBuffers" is obsolete. Use ":Bdelete select" instead.'
 endif
 
 if !exists(':CloseThisBuffer')
-  command -bang CloseThisBuffer echo '":CloseThisBuffer" is obsolete. Use ":Bdelete this" instead.'
+  command -bang CloseThisBuffer echoerr '":CloseThisBuffer" is obsolete. Use ":Bdelete this" instead.'
 endif
 
 if !exists(':CloseBuffers')
-  command -bang CloseBuffers echo '":CloseBuffers" is obsolete. Use ":Bdelete menu" instead.'
+  command -bang CloseBuffers echoerr '":CloseBuffers" is obsolete. Use ":Bdelete menu" instead.'
 endif
 
 if !exists(':CloseBuffersMenu')
-  command -bang CloseBuffersMenu echo '":CloseBuffersMenu" is obsolete. Use ":Bdelete menu" instead.'
+  command -bang CloseBuffersMenu echoerr '":CloseBuffersMenu" is obsolete. Use ":Bdelete menu" instead.'
 endif
 
 " Teardown
