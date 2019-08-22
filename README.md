@@ -3,8 +3,8 @@
 This plug-in allows you to quickly `bdelete` several buffers at once. It is useful if you want to
 prune your buffer list or free up memory.
 
-It provides a single new command called `Bdelete` that takes a single parameter describing which
-buffers to `bdelete`. See the list of possible parameters [below](#commands).
+It provides a command called `Bdelete` that takes a single parameter specifying which buffers to
+`bdelete`. See the list of possible parameters below.
 
 ## Demo Video
 
@@ -20,7 +20,7 @@ Command               | Description                                             
  `:Bdelete this`      | `bdelete` buffer in the current window                          | `:bdelete`
  `:Bdelete nameless`  | `bdelete` buffers without a name: *[No Name]*                   |
  `:Bdelete select`    | Lets you interactively select which buffers to `bdelete`        |
- `:Bdelete menu`      | Lets you interactively choose an above command                  |
+ `:Bdelete menu`      | Lets you interactively choose one of the other command  above   |
 
 🔥 = Popular
 
@@ -52,12 +52,12 @@ changes.
 In order to force `Bdelete` to `bdelete` modified buffers, add a bang to the end of the command,
 i.e., `Bdelete!`.
 
-Alternatively, you can configure Vim to ask you to interactively confirm each modified buffer being
+Alternatively, you can configure Vim to ask you to confirm each modified buffer that would be
 `bdeleted`. This can be done by setting the native Vim `confirm` option with `:set confirm`.
 
 ### Bwipeout
 If you know what you are doing, you can use `Bwipeout` instead of `Bdelete` to `bwipeout` buffers
-instead of `bdelete` them. `Bwipeout` has the same [parameters](#commands) as `Bdelete`.
+instead of `bdelete` them. The `Bwipeout` command has the same [parameters](#commands) as `Bdelete`.
 
 ### Inspiration
 This plugin was inspired by [vim-bufonly](https://github.com/schickling/vim-bufonly), but adds
