@@ -20,7 +20,7 @@ Command               | Description                                             
  `:Bdelete this`      | `bdelete` buffer in the current window                          | `:bdelete`
  `:Bdelete nameless`  | `bdelete` buffers without a name: *[No Name]*                   |
  `:Bdelete select`    | Lets you interactively select which buffers to `bdelete`        |
- `:Bdelete menu`      | Lets you interactively choose one of the other command  above   |
+ `:Bdelete menu`      | Lets you interactively choose one of the other commands  above  |
 
 🔥 = Popular
 
@@ -61,7 +61,7 @@ instead of `bdelete` them. The `Bwipeout` command has the same [parameters](#com
 
 ### Inspiration
 This plugin was inspired by [vim-bufonly](https://github.com/schickling/vim-bufonly), but adds
-several related actions.
+several related features.
 
 ### License
 Same license as Vim itself.
