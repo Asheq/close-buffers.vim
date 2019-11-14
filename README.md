@@ -67,4 +67,4 @@ several related features.
 Same license as Vim itself.
 
 ### Todo
-- Add option to not mess up window layout
+- Add option to allow closing buffers without closing any windows they are displayed in, like [vim-bbye](https://github.com/moll/vim-bbye)
