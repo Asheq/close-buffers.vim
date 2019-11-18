@@ -53,7 +53,7 @@ function! s:bclose(command, bang, option)
   elseif (a:option == 'select')
     pwd
     execute 'ls' . (a:command == 'bwipeout' ? '!' : '')
-    call feedkeys(':' . s:append_bang(a:command, a:bang) . ' ')
+    call feedkeys(':' . s:append_bang(a:command, a:bang) . ' ', 'n')
   elseif (a:option == 'this')
     execute s:append_bang(a:command, a:bang)
   else
