@@ -8,7 +8,7 @@ It provides a command called `Bdelete` that takes a single parameter specifying 
 
 ## Demo Video
 
-![demo](https://raw.githubusercontent.com/Asheq/close-buffers.vim/change-command/img/demo.gif)
+![demo](https://raw.githubusercontent.com/Asheq/close-buffers.vim/master/img/demo.gif)
 
 ## Commands
 
