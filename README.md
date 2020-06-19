@@ -40,7 +40,7 @@ You can use any plugin manager you want. Some popular options:
 
 - [vim-plug](https://github.com/junegunn/vim-plug): `Plug 'Asheq/close-buffers.vim'`
 - [Vundle](https://github.com/VundleVim/Vundle.vim): `Plugin 'Asheq/close-buffers.vim'`
-- [pathogen](https://github.com/tpope/vim-pathogen): `cd ~/.vim/bundle && git clone git://github.com/asheq/close-buffers.git`
+- [pathogen](https://github.com/tpope/vim-pathogen): `cd ~/.vim/bundle && git clone git://github.com/asheq/close-buffers.vim.git`
 - Manual: Copy the files into your `.vim` directory.
 
 ## Other Info
