@@ -27,18 +27,28 @@ endfunction
 
 let s:menu_confirm_string = s:get_menu_confirm_string()
 
-" Commands
+" Set delete and wipeout commands.
 " --------------------
-if exists(':Bdelete')
-  echoerr 'close-buffers.vim: You already have a ":Bdelete" command defined'
-else
-  command -bang -nargs=1 -complete=customlist,s:bclose_completion_options Bdelete call s:bclose('bdelete', <bang>0, <f-args>)
+if !exists('g:close_buffers_bdelete_command')
+  let g:close_buffers_bdelete_command = 'Bdelete'
 endif
 
-if exists(':Bwipeout')
-  echoerr 'close-buffers.vim: You already have a ":Bwipeout" command defined'
+if !exists('g:close_buffers_bwipeout_command')
+  let g:close_buffers_bwipeout_command = 'Bwipeout'
+endif
+
+" Commands
+" --------------------
+if exists(':' . g:close_buffers_bdelete_command)
+  echoerr 'close-buffers.vim: You already have a ":' . g:close_buffers_bdelete_command . '" command defined'
 else
-  command -bang -nargs=1 -complete=customlist,s:bclose_completion_options Bwipeout call s:bclose('bwipeout', <bang>0, <f-args>)
+  execute 'command -bang -nargs=1 -complete=customlist,s:bclose_completion_options ' . g:close_buffers_bdelete_command . ' call s:bclose("bdelete", <bang>0, <f-args>)'
+endif
+
+if exists(':' . g:close_buffers_bwipeout_command)
+  echoerr 'close-buffers.vim: You already have a ":' . g:close_buffers_bwipeout_command . '" command defined'
+else
+  execute 'command -bang -nargs=1 -complete=customlist,s:bclose_completion_options ' . g:close_buffers_bwipeout_command . ' call s:bclose("bwipeout", <bang>0, <f-args>)'
 endif
 
 " Functions
