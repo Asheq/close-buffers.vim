@@ -54,26 +54,27 @@ endif
 " Functions
 " --------------------
 function! s:bclose(command, bang, option)
-  if index(s:options, a:option) < 0
-    echoerr 'close-buffers.vim: Invalid option: ' . a:option
+  let l:option = trim(a:option)
+  if index(s:options, l:option) < 0
+    echoerr 'close-buffers.vim: Invalid option: ' . l:option
   endif
 
-  if (a:option == 'menu')
+  if (l:option == 'menu')
     call s:bclose_menu(a:command, a:bang)
-  elseif (a:option == 'select')
+  elseif (l:option == 'select')
     pwd
     execute 'ls' . (a:command == 'bwipeout' ? '!' : '')
     call feedkeys(':' . s:append_bang(a:command, a:bang) . ' ', 'n')
-  elseif (a:option == 'this')
+  elseif (l:option == 'this')
     execute s:append_bang(a:command, a:bang)
   else
-    if (a:option == 'other')
+    if (l:option == 'other')
       let filtered_bufinfo = filter(s:get_relevant_bufinfo(a:command), 'v:val.bufnr != bufnr("%")')
-    elseif (a:option == 'hidden')
+    elseif (l:option == 'hidden')
       let filtered_bufinfo = filter(s:get_relevant_bufinfo(a:command), 'empty(v:val.windows)')
-    elseif (a:option == 'nameless')
+    elseif (l:option == 'nameless')
       let filtered_bufinfo = filter(s:get_relevant_bufinfo(a:command), 'v:val.name == ""')
-    elseif (a:option == 'all')
+    elseif (l:option == 'all')
       let filtered_bufinfo = s:get_relevant_bufinfo(a:command)
     endif
 
