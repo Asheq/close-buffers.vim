@@ -22,8 +22,6 @@ Command               | Description                                             
  `:Bdelete select`    | Lets you interactively select which buffers to `bdelete`        |
  `:Bdelete menu`      | Lets you interactively choose one of the other commands  above  |
 
-🔥 = Popular
-
 ## Recommended key mapping
 
 I recommend one of the following key mappings:
@@ -65,6 +63,3 @@ several related features.
 
 ### License
 Same license as Vim itself.
-
-### Todo
-- Add option to allow closing buffers without closing any windows they are displayed in, like [vim-bbye](https://github.com/moll/vim-bbye)
