@@ -1,3 +1,5 @@
+NOTE: I'm no longer maintaining this repo. Please feel free to fork!
+
 # close-buffers.vim
 
 This plug-in allows you to quickly `bdelete` several buffers at once. It is useful if you want to
